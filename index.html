@@ -93,7 +93,9 @@
           <h3>D-05 “VOLTAGE”</h3>
           <p class="tag">Electro-Reactive Entity</p>
           <p>元人間由来の電磁干渉体。送電網事故後、電位として残留。</p>
-          <a class="more" href="#modal-voltage" aria-label="More about VOLTAGE">View Fragment →</a>
+<a href="#" class="more open-modal" data-target="modal-voltage" aria-label="More about VOLTAGE">
+  View Fragment →
+</a>
         </article>
         <article class="entity">
           <h3>D-S09 “HELIOS-9”</h3>
@@ -122,8 +124,8 @@
 
   <!-- CSS-only Modals via :target -->
 <section id="modal-voltage" class="modal" aria-label="VOLTAGE Log">
-  <div class="modal-dialog" role="dialog" aria-modal="true">
-    <a href="#" class="modal-close" aria-label="Close">×</a>
+  <div class="modal-dialog">
+    <button class="modal-close" aria-label="Close">&times;</button>
     <h3>Observation Log: VOLTAGE</h3>
     <p class="mono">Timestamp 22:17:48 JST</p>
     <p>送電網への再接続を検出。EMP様反応が上昇。観測継続により電位は安定。</p>
@@ -293,6 +295,46 @@ passBtn.addEventListener('click', () => {
     } else {
       document.body.classList.remove("modal-open");
     }
+  });
+</script>
+<script>
+  const modalTriggers = document.querySelectorAll('.open-modal');
+  const modals = document.querySelectorAll('.modal');
+  const body = document.body;
+
+  modalTriggers.forEach(trigger => {
+    trigger.addEventListener('click', (e) => {
+      e.preventDefault();
+      const targetId = trigger.dataset.target;
+      const modal = document.getElementById(targetId);
+      if (modal) {
+        modal.classList.add('active');
+        body.classList.add('modal-open');
+      }
+    });
+  });
+
+  modals.forEach(modal => {
+    const closeBtn = modal.querySelector('.modal-close');
+
+    const closeModal = () => {
+      modal.classList.remove('active');
+      body.classList.remove('modal-open');
+    };
+
+    closeBtn.addEventListener('click', closeModal);
+
+    // 背景クリックでも閉じる
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeModal();
+    });
+
+    // ESCキーでも閉じる
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('active')) {
+        closeModal();
+      }
+    });
   });
 </script>
 
