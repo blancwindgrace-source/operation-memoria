@@ -124,7 +124,6 @@
     <small>© F.A.D.E. Central Division — Internal Access Only</small>
   </footer>
 
-  <!-- CSS-only Modals via :target -->
 <section id="modal-voltage" class="modal" aria-label="VOLTAGE Log">
   <div class="modal-dialog">
     <button class="modal-close" aria-label="Close">&times;</button>
@@ -133,20 +132,19 @@
     <p>送電網への再接続を検出。EMP様反応が上昇。観測継続により電位は安定。</p>
     <p>観測員の端末に向けて攻撃性を示すため、機器の段階的遮断を実施。</p>
 
-    <!-- 🔽 ここから追加 -->
-<div id="passPrompt" class="pass-window hidden">
-  <p>ACCESS CODE REQUIRED</p>
+    <!-- 🔽 セキュリティ＆パスワード入力 -->
+    <p class="security-level" id="securityLevelIV">セキュリティレベルⅣ</p>
 
-  <div class="pass-input-wrapper">
-    <input type="password" id="passInput" placeholder="ENTER CODE">
-    <button id="togglePass" aria-label="Show password">👁</button>
-  </div>
-
-  <button id="passSubmit">VERIFY</button>
-  <p id="passMsg" class="pass-msg"></p>
-</div>
-    <!-- 🔼 ここまで追加 -->
-
+    <div id="passPrompt" class="pass-window hidden">
+      <p>ACCESS CODE REQUIRED</p>
+      <div class="pass-input-wrapper">
+        <input type="password" id="passInput" placeholder="ENTER CODE">
+        <button id="togglePass" aria-label="Show password">👁</button>
+      </div>
+      <button id="passSubmit">VERIFY</button>
+      <p id="passMsg" class="pass-msg"></p>
+    </div>
+    <!-- 🔼 ここまで -->
   </div>
 </section>
 
@@ -279,7 +277,7 @@ if (passSubmit) {
     }
   });
 }
-  /* === パスワード表示切り替え === */
+/* === パスワード表示切り替え === */
 const togglePass = document.getElementById('togglePass');
 if (togglePass && passInput) {
   togglePass.addEventListener('click', () => {
