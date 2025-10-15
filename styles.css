@@ -261,3 +261,62 @@ body{
   40% { width: 80%; opacity: 1; }
   100% { width: 100%; opacity: 0.3; }
 }
+/* --- セキュリティレベル項目 --- */
+.security-level {
+  color: #00f5ff;
+  cursor: pointer;
+  font-weight: bold;
+  margin-top: 1em;
+  text-shadow: 0 0 5px #00f5ff66;
+  transition: color 0.2s ease;
+}
+.security-level:hover {
+  color: #ffcc33;
+  text-shadow: 0 0 10px #ffaa00cc;
+}
+
+/* --- パス入力ウィンドウ --- */
+.pass-window {
+  margin-top: 1em;
+  padding: 1em;
+  border: 1px solid #00f5ff55;
+  background-color: #0b0f12e6;
+  border-radius: 6px;
+  text-align: center;
+}
+.pass-window.hidden {
+  display: none;
+}
+.pass-window input {
+  width: 70%;
+  background: #000;
+  border: 1px solid #00f5ff;
+  color: #00f5ff;
+  padding: 0.4em;
+  margin: 0.5em 0;
+  font-family: 'Share Tech Mono', monospace;
+}
+.pass-window button {
+  background: #00f5ff22;
+  border: 1px solid #00f5ff;
+  color: #00f5ff;
+  padding: 0.4em 0.8em;
+  cursor: pointer;
+  font-family: inherit;
+}
+.pass-msg {
+  margin-top: 0.6em;
+  font-size: 0.9em;
+}
+
+/* --- VOLTAGE妨害エフェクト --- */
+.voltage-interference {
+  animation: voltageGlitch 0.12s infinite alternate;
+}
+@keyframes voltageGlitch {
+  0% { filter: contrast(1.1) brightness(0.8) hue-rotate(0deg); }
+  25% { filter: brightness(1.4) hue-rotate(90deg) contrast(1.5); }
+  50% { filter: invert(0.2) brightness(1.3) hue-rotate(-90deg); }
+  75% { filter: contrast(2) brightness(1.2); }
+  100% { filter: brightness(0.7) contrast(1); }
+}
