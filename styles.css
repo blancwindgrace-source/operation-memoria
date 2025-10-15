@@ -311,7 +311,7 @@ body{
 
 /* --- VOLTAGE妨害エフェクト --- */
 .voltage-interference {
-  animation: voltageGlitch 0.12s infinite alternate;
+  animation: voltageGlitch 0.3s infinite alternate;
 }
 @keyframes voltageGlitch {
   0% { filter: contrast(1.1) brightness(0.8) hue-rotate(0deg); }
