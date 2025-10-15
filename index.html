@@ -339,6 +339,77 @@ passBtn.addEventListener('click', () => {
     });
   });
 </script>
+<script>
+  // === Modal Control ===
+  const modalTriggers = document.querySelectorAll('.open-modal');
+  const modals = document.querySelectorAll('.modal');
+  const body = document.body;
+
+  modalTriggers.forEach(trigger => {
+    trigger.addEventListener('click', e => {
+      e.preventDefault();
+      const targetId = trigger.dataset.target;
+      const modal = document.getElementById(targetId);
+      if (modal) {
+        modal.classList.add('active');
+        body.classList.add('modal-open');
+      }
+    });
+  });
+
+  modals.forEach(modal => {
+    const closeBtn = modal.querySelector('.modal-close');
+
+    const closeModal = () => {
+      modal.classList.remove('active');
+      body.classList.remove('modal-open');
+    };
+
+    closeBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', e => {
+      if (e.target === modal) closeModal();
+    });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && modal.classList.contains('active')) closeModal();
+    });
+  });
+
+  // === Access Code Verification (VOLTAGE専用) ===
+  const securityBtn = document.getElementById('securityLevelIV');
+  const passPrompt = document.getElementById('passPrompt');
+  const passInput = document.getElementById('passInput');
+  const passSubmit = document.getElementById('passSubmit');
+  const passMsg = document.getElementById('passMsg');
+
+  // 「セキュリティレベルIV」クリックで表示
+  if (securityBtn) {
+    securityBtn.addEventListener('click', () => {
+      passPrompt.classList.toggle('hidden');
+      passMsg.textContent = '';
+      passInput.value = '';
+    });
+  }
+
+  // パスワード検証処理
+  if (passSubmit) {
+    passSubmit.addEventListener('click', e => {
+      e.preventDefault(); // ← これが重要（送信動作防止）
+      const entered = passInput.value.trim();
+      const correctCode = "VEIN-091"; // 🔒 推奨パスワード例（自由に変更可）
+
+      if (entered === correctCode) {
+        passMsg.style.color = "#00e7ff";
+        passMsg.textContent = "ACCESS GRANTED";
+        setTimeout(() => {
+          window.location.href = "voltage.html"; // 成功時のリダイレクト
+        }, 1500);
+      } else {
+        passMsg.style.color = "#ef4444";
+        passMsg.textContent = "ACCESS DENIED";
+      }
+    });
+  }
+</script>
 
 </body>
 </html>
