@@ -168,7 +168,7 @@ body{
   padding:24px;
   z-index:50;
 }
-.modal:target{display:flex}
+.modal.active { display: flex; }
 .modal-dialog{
   width:min(720px, 94vw);
   background:var(--panel);
