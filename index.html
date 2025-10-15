@@ -156,47 +156,46 @@
       if (e.key === 'Enter' || e.key === ' ') continueBoot();
     });
 
-/* === L-EXゲージ制御：Complete!!で完全停止（DOMロック版） === */
+/* === L-EXゲージ制御：Complete!!で完全停止（再描画封印版） === */
 (function() {
   const bar = document.getElementById('lexBar');
   const label = document.getElementById('lexLabel');
   if (!bar || !label) return;
 
   let progress = 0;
-  let isLocked = false;
+  let interval = null;
 
   function updateGauge() {
-    if (isLocked) return; // すでに固定化されていたら何もしない
-
-    progress += 1.5; // 約5秒で満タン
-    if (progress > 100) progress = 100;
-    bar.style.width = progress + '%';
-
+    progress += 1.5;
     if (progress >= 100) {
-      // 停止処理
-      isLocked = true;
+      progress = 100;
       bar.style.width = '100%';
+      clearInterval(interval);
+
+      // --- 完了演出 ---
       bar.style.transition = 'none';
-      bar.style.boxShadow = '0 0 30px #00f5ffcc';
+      bar.style.boxShadow = '0 0 32px #00f5ffcc';
       label.textContent = 'Complete!!';
       label.style.color = '#00f5ff';
       label.style.textShadow = '0 0 12px #00f5ffcc';
 
-      // 0.4秒後に光を弱め固定
+      // --- 発光を落として固定 ---
       setTimeout(() => {
         bar.style.boxShadow = '0 0 8px #00f5ff55';
         bar.style.transition = 'none';
-
-        // 🔒 DOM更新を物理的に停止（無駄な再描画を防止）
-        const clone = bar.cloneNode(true);
-        bar.parentNode.replaceChild(clone, bar);
+        // ★ ここで描画再計算を強制 → 以後再描画停止
+        bar.getBoundingClientRect(); 
+        // ★ CSSアニメ・トランジションを完全除去
+        bar.style.animation = 'none';
+        bar.style.willChange = 'auto';
+        // ★ 一切動かない静的状態
       }, 400);
-
-      clearInterval(interval);
+    } else {
+      bar.style.width = progress + '%';
     }
   }
 
-  const interval = setInterval(updateGauge, 75);
+  interval = setInterval(updateGauge, 75);
 })();
 
     /* === モーダル閉鎖（Esc＋外クリック） === */
