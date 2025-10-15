@@ -281,6 +281,20 @@ passBtn.addEventListener('click', () => {
     }
   });
 </script>
+<script>
+  // Prevent scroll jump caused by :target
+  let lastScrollTop = 0;
+
+  window.addEventListener("hashchange", () => {
+    if (location.hash.startsWith("#modal-")) {
+      lastScrollTop = window.scrollY; // 現在位置を記録
+      document.body.classList.add("modal-open");
+      setTimeout(() => window.scrollTo(0, lastScrollTop), 10); // スクロール戻す
+    } else {
+      document.body.classList.remove("modal-open");
+    }
+  });
+</script>
 
 </body>
 </html>
