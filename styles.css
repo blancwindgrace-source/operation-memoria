@@ -216,3 +216,48 @@ body{
   position: relative;
   z-index: 2;
 }
+/* === L-EX Gauge Effect === */
+.lex-gauge {
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  max-width: 480px;
+  text-align: center;
+  z-index: 3;
+}
+
+.lex-label {
+  font-family: "Share Tech Mono", monospace;
+  font-size: 0.9rem;
+  color: #00f5ffcc;
+  letter-spacing: 0.1em;
+  margin-bottom: 6px;
+  text-shadow: 0 0 6px #00f5ff99;
+}
+
+.lex-bar {
+  width: 100%;
+  height: 6px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 2px;
+  overflow: hidden;
+  box-shadow: inset 0 0 8px #00f5ff44;
+}
+
+.lex-bar span {
+  display: block;
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #00f5ff, #00c9ff, #00f5ff);
+  border-radius: 2px;
+  animation: lexCharge 5s linear infinite;
+  box-shadow: 0 0 12px #00f5ff88;
+}
+
+@keyframes lexCharge {
+  0% { width: 0%; opacity: 0.4; }
+  40% { width: 80%; opacity: 1; }
+  100% { width: 100%; opacity: 0.3; }
+}
