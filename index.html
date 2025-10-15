@@ -156,38 +156,47 @@
       if (e.key === 'Enter' || e.key === ' ') continueBoot();
     });
 
-/* === L-EXゲージ制御：一度だけ発光＋Complete!!で完全停止 === */
+/* === L-EXゲージ制御：Complete!!で完全停止（DOMロック版） === */
 (function() {
   const bar = document.getElementById('lexBar');
   const label = document.getElementById('lexLabel');
   if (!bar || !label) return;
 
   let progress = 0;
-  label.textContent = 'L-EX SYNCHRONIZATION';
+  let isLocked = false;
 
-  const interval = setInterval(() => {
+  function updateGauge() {
+    if (isLocked) return; // すでに固定化されていたら何もしない
+
     progress += 1.5; // 約5秒で満タン
+    if (progress > 100) progress = 100;
     bar.style.width = progress + '%';
 
     if (progress >= 100) {
-      clearInterval(interval);
-      // 最終状態に固定
-      progress = 100;
+      // 停止処理
+      isLocked = true;
       bar.style.width = '100%';
-      bar.style.transition = 'none'; // 動作固定
-      bar.style.boxShadow = '0 0 30px #00f5ffcc'; // 一瞬発光
-
+      bar.style.transition = 'none';
+      bar.style.boxShadow = '0 0 30px #00f5ffcc';
       label.textContent = 'Complete!!';
       label.style.color = '#00f5ff';
       label.style.textShadow = '0 0 12px #00f5ffcc';
 
-      // 発光を弱めて最終状態へ固定
+      // 0.4秒後に光を弱め固定
       setTimeout(() => {
         bar.style.boxShadow = '0 0 8px #00f5ff55';
-        bar.style.transition = 'none'; // 完全静止
+        bar.style.transition = 'none';
+
+        // 🔒 DOM更新を物理的に停止（無駄な再描画を防止）
+        const clone = bar.cloneNode(true);
+        bar.parentNode.replaceChild(clone, bar);
       }, 400);
+
+      clearInterval(interval);
     }
-  }, 75);
+  }
+
+  const interval = setInterval(updateGauge, 75);
 })();
 
     /* === モーダル閉鎖（Esc＋外クリック） === */
