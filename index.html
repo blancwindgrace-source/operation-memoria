@@ -145,41 +145,40 @@
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Tab') document.body.classList.add('show-focus');
     });
-  </script>
-  <script>
-  (function() {
-    let lastScrollY = 0;
 
-    // モーダルを開く前のスクロール位置を記録
-    document.addEventListener("click", function(e) {
-      if (e.target.matches("a.more")) {
-        lastScrollY = window.scrollY;
-      }
-    });
+    // === モーダル閉鎖時のスクロール維持 + Esc対応 ===
+    (function() {
+      let lastScrollY = 0;
 
-    // Escキーで閉じる＋スクロール維持
-    document.addEventListener("keydown", function (event) {
-      if (event.key === "Escape") {
-        const openModal = document.querySelector(".modal:target");
-        if (openModal) {
+      // 開く前に記録
+      document.addEventListener("click", function(e) {
+        if (e.target.matches("a.more")) {
+          lastScrollY = window.scrollY;
+        }
+      });
+
+      // Escキーで閉じる
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape") {
+          const openModal = document.querySelector(".modal:target");
+          if (openModal) {
+            const scrollBackup = lastScrollY;
+            history.replaceState(null, "", " ");
+            window.scrollTo(0, scrollBackup);
+          }
+        }
+      });
+
+      // ×ボタンで閉じる場合も維持
+      document.querySelectorAll(".modal-close").forEach(close => {
+        close.addEventListener("click", function (e) {
+          e.preventDefault();
           const scrollBackup = lastScrollY;
           history.replaceState(null, "", " ");
           window.scrollTo(0, scrollBackup);
-        }
-      }
-    });
-
-    // 「×」ボタンやリンククリック時もスクロール維持
-    document.querySelectorAll(".modal-close").forEach(close => {
-      close.addEventListener("click", function (e) {
-        e.preventDefault();
-        const scrollBackup = lastScrollY;
-        history.replaceState(null, "", " ");
-        window.scrollTo(0, scrollBackup);
+        });
       });
-    });
-  })();
-</script>
-
+    })();
+  </script>
 </body>
 </html>
