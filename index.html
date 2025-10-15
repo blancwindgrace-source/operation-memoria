@@ -121,15 +121,27 @@
   </footer>
 
   <!-- CSS-only Modals via :target -->
-  <section id="modal-voltage" class="modal" aria-label="VOLTAGE Log">
-    <div class="modal-dialog" role="dialog" aria-modal="true">
-      <a href="#" class="modal-close" aria-label="Close">×</a>
-      <h3>Observation Log: VOLTAGE</h3>
-      <p class="mono">Timestamp 22:17:48 JST</p>
-      <p>送電網への再接続を検出。EMP様反応が上昇。観測継続により電位は安定。</p>
-      <p>観測員の端末に向けて攻撃性を示すため、機器の段階的遮断を実施。</p>
+<section id="modal-voltage" class="modal" aria-label="VOLTAGE Log">
+  <div class="modal-dialog" role="dialog" aria-modal="true">
+    <a href="#" class="modal-close" aria-label="Close">×</a>
+    <h3>Observation Log: VOLTAGE</h3>
+    <p class="mono">Timestamp 22:17:48 JST</p>
+    <p>送電網への再接続を検出。EMP様反応が上昇。観測継続により電位は安定。</p>
+    <p>観測員の端末に向けて攻撃性を示すため、機器の段階的遮断を実施。</p>
+
+    <!-- 🔽 ここから追加 -->
+    <p class="security-level" id="securityLevelIV">セキュリティレベルⅣ</p>
+
+    <div id="passPrompt" class="pass-window hidden">
+      <p>ACCESS CODE REQUIRED</p>
+      <input type="password" id="passInput" placeholder="ENTER CODE">
+      <button id="passSubmit">VERIFY</button>
+      <p id="passMsg" class="pass-msg"></p>
     </div>
-  </section>
+    <!-- 🔼 ここまで追加 -->
+
+  </div>
+</section>
 
   <section id="modal-helios" class="modal" aria-label="HELIOS-9 Log">
     <div class="modal-dialog" role="dialog" aria-modal="true">
@@ -221,5 +233,44 @@
       });
     })();
   </script>
+  <script>
+const secBtn = document.getElementById('securityLevelIV');
+const passWin = document.getElementById('passPrompt');
+const passBtn = document.getElementById('passSubmit');
+const passInput = document.getElementById('passInput');
+const passMsg = document.getElementById('passMsg');
+
+secBtn.addEventListener('click', () => {
+  passWin.classList.toggle('hidden');
+  passMsg.textContent = '';
+  passInput.value = '';
+});
+
+passBtn.addEventListener('click', () => {
+  const code = passInput.value.trim().toUpperCase();
+
+  if (code === 'ARC-06-VOLTAGE') { // ← ここを好きなパスワードに変更
+    passMsg.innerHTML = '<span style="color:#ff3333;">[ALERT]</span> Unauthorized signal detected...';
+    document.body.classList.add('voltage-interference');
+
+    setTimeout(() => {
+      passMsg.innerHTML = '<span style="color:#ffaa00;">[SYSTEM]</span> Communication disrupted...';
+    }, 1000);
+
+    setTimeout(() => {
+      passMsg.innerHTML = '<span style="color:#00f5ff;">[FADE]</span> Redirecting to Observation Log...';
+    }, 2200);
+
+    setTimeout(() => {
+      window.location.href = './voltage.html';
+    }, 3500);
+
+  } else {
+    passMsg.textContent = 'ACCESS DENIED';
+    passMsg.style.color = '#ff4444';
+  }
+});
+</script>
+
 </body>
 </html>
