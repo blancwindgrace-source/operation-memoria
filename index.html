@@ -279,6 +279,16 @@ if (passSubmit) {
     }
   });
 }
+  /* === パスワード表示切り替え === */
+const togglePass = document.getElementById('togglePass');
+if (togglePass && passInput) {
+  togglePass.addEventListener('click', () => {
+    const type = passInput.getAttribute('type') === 'password' ? 'text' : 'password';
+    passInput.setAttribute('type', type);
+    togglePass.textContent = type === 'password' ? '👁' : '🙈';
+  });
+}
+
 </script>
 
 
