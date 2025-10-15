@@ -19,16 +19,17 @@
     <div class="badge" aria-hidden="true">INTERNAL // ACCESS: RESTRICTED</div>
   </header>
 
-<section class="boot" id="boot" aria-label="System boot sequence">
-  <div class="boot-bg"></div> <!-- 追加：ロゴ背景 -->
-  <div class="terminal">
-    <p class="t-line">[FADE CENTRAL NODE] Initializing</p>
-    <p class="t-line">Auth Layer: <span class="blink">●</span> Negotiating</p>
-    <p class="t-line">L-EX Sync: Pending — A-ZERO: Standby</p>
-    <p class="t-line accent">ACCESSING F.A.D.E. TERMINAL</p>
-    <p class="t-line faint">hint: Press Enter or tap to continue</p>
-  </div>
-</section>
+  <!-- Boot / Access Screen -->
+  <section class="boot" id="boot" aria-label="System boot sequence">
+    <div class="boot-bg"></div>
+    <div class="terminal">
+      <p class="t-line">[FADE CENTRAL NODE] Initializing</p>
+      <p class="t-line">Auth Layer: <span class="blink">●</span> Negotiating</p>
+      <p class="t-line">L-EX Sync: Pending — A-ZERO: Standby</p>
+      <p class="t-line accent">ACCESSING F.A.D.E. TERMINAL</p>
+      <p class="t-line faint">hint: Press Enter or tap to continue</p>
+    </div>
+  </section>
 
   <main id="main" hidden>
     <!-- Hero -->
@@ -146,41 +147,49 @@
       if (e.key === 'Tab') document.body.classList.add('show-focus');
     });
 
-    // === モーダル閉鎖時のスクロール維持 + Esc対応（完全動作版） ===
-   (function() {
-  let lastScrollY = 0;
+    // === モーダル閉鎖時のスクロール維持 + Esc + 枠外クリック対応 ===
+    (function() {
+      let lastScrollY = 0;
 
-  // モーダルを開く前のスクロール位置を記録
-  document.addEventListener("click", function(e) {
-    if (e.target.matches("a.more")) {
-      lastScrollY = window.scrollY;
-    }
-  });
+      // モーダルを開く前のスクロール位置を記録
+      document.addEventListener("click", function(e) {
+        if (e.target.matches("a.more")) {
+          lastScrollY = window.scrollY;
+        }
+      });
 
-  // Escキーで閉じる
-  document.addEventListener("keydown", function(event) {
-    if (event.key === "Escape") {
-      const openModal = document.querySelector(".modal:target");
-      if (openModal) {
-        const scrollBackup = lastScrollY;
-        // ハッシュをクリアしてモーダルを閉じる
-        location.hash = "";
-        // ページスクロールを復元
-        setTimeout(() => window.scrollTo(0, scrollBackup), 10);
-      }
-    }
-  });
+      // Escキーで閉じる
+      document.addEventListener("keydown", function(event) {
+        if (event.key === "Escape") {
+          const openModal = document.querySelector(".modal:target");
+          if (openModal) {
+            const scrollBackup = lastScrollY;
+            location.hash = "";
+            setTimeout(() => window.scrollTo(0, scrollBackup), 10);
+          }
+        }
+      });
 
-  // ×ボタンで閉じる場合も同じ挙動に
-  document.querySelectorAll(".modal-close").forEach(close => {
-    close.addEventListener("click", function(e) {
-      e.preventDefault();
-      const scrollBackup = lastScrollY;
-      location.hash = "";
-      setTimeout(() => window.scrollTo(0, scrollBackup), 10);
-    });
-  });
-})();
+      // ×ボタンで閉じる
+      document.querySelectorAll(".modal-close").forEach(close => {
+        close.addEventListener("click", function(e) {
+          e.preventDefault();
+          const scrollBackup = lastScrollY;
+          location.hash = "";
+          setTimeout(() => window.scrollTo(0, scrollBackup), 10);
+        });
+      });
+
+      // 枠外クリックで閉じる
+      document.addEventListener("click", function(e) {
+        const openModal = document.querySelector(".modal:target");
+        if (openModal && e.target === openModal) {
+          const scrollBackup = lastScrollY;
+          location.hash = "";
+          setTimeout(() => window.scrollTo(0, scrollBackup), 10);
+        }
+      });
+    })();
   </script>
 </body>
 </html>
