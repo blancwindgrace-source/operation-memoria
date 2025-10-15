@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>F.A.D.E.観測報告書 No.07 - HELIOS-9</title>
+  <meta name="description" content="F.A.D.E. Observation Report No.07 / HELIOS-9">
+  <meta name="theme-color" content="#ff3b00">
+
+  <style>
+    :root {
+      --bg: #0b0a09;
+      --panel: #1c1b1a;
+      --accent: #ff4d00;
+      --accent2: #ffa600;
+      --text: #e8e5e0;
+      --line: #332a1f;
+    }
+    body {
+      font-family: "Segoe UI", "Noto Sans JP", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    header {
+      background: linear-gradient(90deg, #1a0e00, #300000);
+      color: var(--accent2);
+      text-align: center;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--line);
+      text-shadow: 0 0 12px rgba(255, 87, 0, 0.6);
+    }
+    main {
+      max-width: 860px;
+      margin: 40px auto;
+      padding: 24px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: 0 0 20px rgba(255, 60, 0, 0.1);
+    }
+    h1, h2, h3 {
+      color: var(--accent);
+      margin-bottom: .5em;
+    }
+    h1 {
+      text-align: center;
+      color: var(--accent2);
+      text-shadow: 0 0 16px rgba(255, 100, 0, 0.7);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1em 0;
+      font-size: 0.95em;
+    }
+    th, td {
+      border: 1px solid var(--line);
+      padding: 8px 10px;
+    }
+    th {
+      background: rgba(255, 80, 0, 0.15);
+      color: var(--accent2);
+      text-align: left;
+    }
+    tr:nth-child(even) td {
+      background: rgba(255, 255, 255, 0.03);
+    }
+    .highlight {
+      color: var(--accent2);
+      font-weight: bold;
+    }
+    .footer {
+      text-align: center;
+      font-size: 0.85em;
+      margin-top: 40px;
+      color: #888;
+    }
+    .back {
+      display: inline-block;
+      margin-top: 30px;
+      padding: 10px 18px;
+      border: 1px solid var(--accent);
+      border-radius: 6px;
+      color: var(--accent);
+      text-decoration: none;
+      transition: 0.3s;
+    }
+    .back:hover {
+      background: var(--accent);
+      color: #000;
+      box-shadow: 0 0 10px var(--accent2);
+    }
+
+    /* --- 点滅するタイトルライン --- */
+    @keyframes flicker {
+      0%, 18%, 22%, 25%, 53%, 57%, 100% { opacity: 1; }
+      20%, 24%, 55% { opacity: 0.4; }
+    }
+    .flicker {
+      animation: flicker 2.5s infinite;
+    }
+
+    /* --- グローエフェクト --- */
+    .glow {
+      text-shadow:
+        0 0 5px var(--accent),
+        0 0 15px var(--accent),
+        0 0 25px var(--accent2),
+        0 0 40px var(--accent2);
+    }
+
+    /* --- 🔥 ALERTオーバーレイ --- */
+    #alertOverlay {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at center, rgba(255,80,0,0.3), rgba(0,0,0,0.9) 80%);
+      color: #ffae00;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      font-family: "Share Tech Mono", monospace;
+      text-shadow: 0 0 10px #ff3300;
+      z-index: 100;
+      animation: alertFlash 1s infinite;
+    }
+    @keyframes alertFlash {
+      0%,100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+    #alertOverlay.hidden {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 🔥 初期ロード時のアラート -->
+  <div id="alertOverlay">[ALERT] Core Temp Rising...</div>
+
+  <header>
+    <h1 class="glow flicker">F.A.D.E.観測報告書 No.07 / HELIOS-9</h1>
+  </header>
+
+  <main>
+    <section>
+      <h2>コードネーム：HELIOS-9（ヘリオス・ナイン）</h2>
+      <p><span class="highlight">分類名：</span>灼熱現象体（Thermal Convergence Entity）<br>
+      <span class="highlight">危険度ランク：</span>S〜B<br>
+      <span class="highlight">初観測記録地点：</span>廃都市第3再生炉区《Helion Spire》<br>
+      <span class="highlight">備考：</span>太陽炉事故によって、意識が高温プラズマと同化</p>
+    </section>
+
+    <section>
+      <h3>■ 概要</h3>
+      <p>
+        HELIOS-9は、廃都市のエネルギー再生計画中に発生した太陽炉臨界事故の被災者であり、事故時の莫大な熱・放射・磁束によって神経信号がプラズマ層へ同化したことで、
+        高温の知性体として再構成されたと考えられている。
+      </p>
+    </section>
+
+    <section>
+      <h3>■ 特性</h3>
+      <table>
+        <tr><th>項目</th><th>内容</th></tr>
+        <tr><td>存在構造</td><td>元人間の神経情報が高温プラズマに融合　恒常的発熱体</td></tr>
+        <tr><td>移動様式</td><td>燃焼波動として浮遊　残光を引きながら移動</td></tr>
+        <tr><td>干渉範囲</td><td>半径3km　高熱・磁束・電離を伴う異常領域を形成</td></tr>
+        <tr><td>主要能力</td><td>極高温放射、燃焼誘発、金属融解、炎流操作</td></tr>
+      </table>
+    </section>
+
+    <section>
+      <h3>■ 行動傾向</h3>
+      <p>不明</p>
+    </section>
+
+    <section>
+      <h3>■ 出現条件</h3>
+      <p>不明</p>
+    </section>
+
+    <section>
+      <h3>■ 撃退／収束手段（F.A.D.E.対応マニュアル抜粋）</h3>
+      <table>
+        <tr><th>手段</th><th>内容</th></tr>
+        <tr><td>観測継続</td><td>熱放射の拡散を抑制。観測中断時に温度暴走の危険</td></tr>
+        <tr><td>A-ZERO</td><td>高温プラズマ層の波動位相を拡散し、エネルギー密度を安定化</td></tr>
+        <tr><td>緊急退避</td><td>温度上昇速度が毎秒+8℃を超過した場合、即時撤退</td></tr>
+      </table>
+    </section>
+
+    <section>
+      <h3>■ 心理・記録分析（F.A.D.E.心理班報告）</h3>
+      <p>
+        HELIOS-9は、■■としての「使命感」が焼却されずに残っている。
+      </p>
+    </section>
+
+    <section>
+      <h3>■ 備考</h3>
+      <p>
+        F.A.D.E.観測網では、HELIOS-9の活動低下とACE出現の同期現象を確認。<br>
+        ACE-01による干渉の可能性が高いが、観測映像は高熱で焼損。
+      </p>
+    </section>
+
+    <div style="text-align:center;">
+      <a href="index.html" class="back">← Return to F.A.D.E. Terminal</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    © F.A.D.E. Central Division — Internal Observation Network
+  </footer>
+
+  <!-- 🔥 JS: ALERT表示制御 -->
+  <script>
+    window.addEventListener('load', () => {
+      const alertOverlay = document.getElementById('alertOverlay');
+      setTimeout(() => {
+        alertOverlay.style.transition = 'opacity 0.8s';
+        alertOverlay.style.opacity = '0';
+      }, 1600);
+      setTimeout(() => {
+        alertOverlay.classList.add('hidden');
+      }, 2500);
+    });
+  </script>
+</body>
+</html>
