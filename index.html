@@ -146,5 +146,16 @@
       if (e.key === 'Tab') document.body.classList.add('show-focus');
     });
   </script>
+  <script>
+  document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape") {
+      const openModal = document.querySelector(".modal:target");
+      if (openModal) {
+        window.location.hash = ""; // ハッシュを解除して閉じる
+      }
+    }
+  });
+</script>
+
 </body>
 </html>
