@@ -386,3 +386,47 @@ body.modal-open {
 #togglePass:hover {
   color: #00eaff;
 }
+/* === パスワード欄のShow/Hide対応 === */
+.pass-window {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid #334155;
+  border-radius: 8px;
+  padding: 12px;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.pass-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+#passInput {
+  flex: 1;
+  padding: 6px 36px 6px 10px;
+  font-family: monospace;
+  background: #0f172a;
+  color: #e2e8f0;
+  border: 1px solid #475569;
+  border-radius: 4px;
+}
+
+#togglePass {
+  position: absolute;
+  right: 6px;
+  background: none;
+  border: none;
+  color: #93c5fd;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+#togglePass:hover {
+  color: #00eaff;
+}
+
+.hidden {
+  display: none;
+}
