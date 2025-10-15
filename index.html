@@ -157,33 +157,38 @@
     });
 
     /* === L-EXゲージ制御：一度だけ発光＋Complete!!表示 === */
-    (function() {
-      const bar = document.getElementById('lexBar');
-      const label = document.getElementById('lexLabel');
-      if (!bar || !label) return;
+(function() {
+  const bar = document.getElementById('lexBar');
+  const label = document.getElementById('lexLabel');
+  if (!bar || !label) return;
 
-      let progress = 0;
-      label.textContent = 'L-EX SYNCHRONIZATION';
+  let progress = 0;
+  label.textContent = 'L-EX SYNCHRONIZATION';
 
-      const interval = setInterval(() => {
-        progress += 1.5; // 約5秒で満タン
-        bar.style.width = progress + '%';
+  const interval = setInterval(() => {
+    progress += 1.5; // 約5秒で満タン
+    bar.style.width = progress + '%';
 
-        if (progress >= 100) {
-          clearInterval(interval);
-          bar.style.width = '100%';
-          bar.style.transition = 'box-shadow 0.4s ease';
-          bar.style.boxShadow = '0 0 30px #00f5ffcc'; // 一瞬発光
-          label.textContent = 'Complete!!';
-          label.style.color = '#00f5ff';
-          label.style.textShadow = '0 0 12px #00f5ffcc';
-          // 0.4秒後に発光を弱めて固定
-          setTimeout(() => {
-            bar.style.boxShadow = '0 0 8px #00f5ff55';
-          }, 400);
-        }
-      }, 75);
-    })();
+    if (progress >= 100) {
+      clearInterval(interval);
+      // 最終状態に固定
+      progress = 100;
+      bar.style.width = '100%';
+      bar.style.transition = 'none'; // 動作固定
+      bar.style.boxShadow = '0 0 30px #00f5ffcc'; // 一瞬発光
+
+      label.textContent = 'Complete!!';
+      label.style.color = '#00f5ff';
+      label.style.textShadow = '0 0 12px #00f5ffcc';
+
+      // 発光を弱めて最終状態へ固定
+      setTimeout(() => {
+        bar.style.boxShadow = '0 0 8px #00f5ff55';
+        bar.style.transition = 'none'; // 完全静止
+      }, 400);
+    }
+  }, 75);
+})();
 
     /* === モーダル閉鎖（Esc＋外クリック） === */
     (function() {
