@@ -360,3 +360,29 @@ body.modal-open {
 body.modal-open {
   overflow: hidden;
 }
+/* === パスワード欄のShow/Hide対応 === */
+.pass-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+#passInput {
+  flex: 1;
+  padding-right: 36px; /* 👁ボタンの分だけ余白 */
+}
+
+#togglePass {
+  position: absolute;
+  right: 6px;
+  background: none;
+  border: none;
+  color: #93c5fd;
+  cursor: pointer;
+  font-size: 16px;
+  transition: color 0.2s;
+}
+
+#togglePass:hover {
+  color: #00eaff;
+}
