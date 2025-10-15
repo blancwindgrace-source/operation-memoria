@@ -100,9 +100,7 @@
       0%, 18%, 22%, 25%, 53%, 57%, 100% { opacity: 1; }
       20%, 24%, 55% { opacity: 0.4; }
     }
-    .flicker {
-      animation: flicker 2.5s infinite;
-    }
+    .flicker { animation: flicker 2.5s infinite; }
 
     /* --- グローエフェクト --- */
     .glow {
@@ -132,15 +130,31 @@
       0%,100% { opacity: 1; }
       50% { opacity: 0.4; }
     }
-    #alertOverlay.hidden {
-      display: none;
+    #alertOverlay.hidden { display: none; }
+
+    /* --- 🔥 赤熱パルス（1回だけ発光波） --- */
+    #pulseEffect {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at center, rgba(255,120,0,0.4), transparent 80%);
+      opacity: 0;
+      pointer-events: none;
+      z-index: 90;
+      animation: none;
+    }
+    @keyframes redPulse {
+      0% { opacity: 0; transform: scale(0.8); filter: blur(3px); }
+      30% { opacity: 0.9; transform: scale(1.05); filter: blur(1px); }
+      60% { opacity: 0.6; transform: scale(1.2); filter: blur(2px); }
+      100% { opacity: 0; transform: scale(1.4); filter: blur(4px); }
     }
   </style>
 </head>
 
 <body>
-  <!-- 🔥 初期ロード時のアラート -->
+  <!-- 🔥 初期ロード演出 -->
   <div id="alertOverlay">[ALERT] Core Temp Rising...</div>
+  <div id="pulseEffect"></div>
 
   <header>
     <h1 class="glow flicker">F.A.D.E.観測報告書 No.07 / HELIOS-9</h1>
@@ -218,10 +232,13 @@
     © F.A.D.E. Central Division — Internal Observation Network
   </footer>
 
-  <!-- 🔥 JS: ALERT表示制御 -->
+  <!-- 🔥 JS: ALERT & PULSE 制御 -->
   <script>
     window.addEventListener('load', () => {
       const alertOverlay = document.getElementById('alertOverlay');
+      const pulseEffect = document.getElementById('pulseEffect');
+
+      // アラート消去タイミング
       setTimeout(() => {
         alertOverlay.style.transition = 'opacity 0.8s';
         alertOverlay.style.opacity = '0';
@@ -229,6 +246,11 @@
       setTimeout(() => {
         alertOverlay.classList.add('hidden');
       }, 2500);
+
+      // パルス発動（ページロード直後）
+      setTimeout(() => {
+        pulseEffect.style.animation = 'redPulse 1.4s ease-out 1';
+      }, 200);
     });
   </script>
 </body>
