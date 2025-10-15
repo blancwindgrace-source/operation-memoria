@@ -147,38 +147,40 @@
     });
 
     // === モーダル閉鎖時のスクロール維持 + Esc対応（完全動作版） ===
-    (function() {
-      let lastScrollY = 0;
+   (function() {
+  let lastScrollY = 0;
 
-      // 開く前に記録
-      document.addEventListener("click", function(e) {
-        if (e.target.matches("a.more")) {
-          lastScrollY = window.scrollY;
-        }
-      });
+  // モーダルを開く前のスクロール位置を記録
+  document.addEventListener("click", function(e) {
+    if (e.target.matches("a.more")) {
+      lastScrollY = window.scrollY;
+    }
+  });
 
-      // Escキーで閉じる
-      document.addEventListener("keydown", function (event) {
-        if (event.key === "Escape") {
-          const openModal = document.querySelector(".modal:target");
-          if (openModal) {
-            const scrollBackup = lastScrollY;
-            history.replaceState(null, "", window.location.pathname + window.location.search);
-            window.scrollTo(0, scrollBackup);
-          }
-        }
-      });
+  // Escキーで閉じる
+  document.addEventListener("keydown", function(event) {
+    if (event.key === "Escape") {
+      const openModal = document.querySelector(".modal:target");
+      if (openModal) {
+        const scrollBackup = lastScrollY;
+        // ハッシュをクリアしてモーダルを閉じる
+        location.hash = "";
+        // ページスクロールを復元
+        setTimeout(() => window.scrollTo(0, scrollBackup), 10);
+      }
+    }
+  });
 
-      // ×ボタンで閉じる場合も維持
-      document.querySelectorAll(".modal-close").forEach(close => {
-        close.addEventListener("click", function (e) {
-          e.preventDefault();
-          const scrollBackup = lastScrollY;
-          history.replaceState(null, "", window.location.pathname + window.location.search);
-          window.scrollTo(0, scrollBackup);
-        });
-      });
-    })();
+  // ×ボタンで閉じる場合も同じ挙動に
+  document.querySelectorAll(".modal-close").forEach(close => {
+    close.addEventListener("click", function(e) {
+      e.preventDefault();
+      const scrollBackup = lastScrollY;
+      location.hash = "";
+      setTimeout(() => window.scrollTo(0, scrollBackup), 10);
+    });
+  });
+})();
   </script>
 </body>
 </html>
