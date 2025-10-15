@@ -190,3 +190,29 @@ body{
 .show-focus a:focus, .show-focus button:focus{
   outline:2px dashed var(--accent); outline-offset:2px;
 }
+/* === Boot Background Logo Animation === */
+.boot {
+  position: relative;
+  overflow: hidden;
+  background: #0a0e10;
+}
+
+.boot-bg {
+  position: absolute;
+  inset: 0;
+  background: url("OPmemo.png") center center no-repeat;
+  background-size: 55%;
+  opacity: 0.06;
+  animation: pulseLogo 5s infinite ease-in-out;
+  filter: drop-shadow(0 0 8px #00f5ff88);
+}
+
+@keyframes pulseLogo {
+  0%, 100% { opacity: 0.05; transform: scale(1); }
+  50% { opacity: 0.15; transform: scale(1.02); }
+}
+
+.boot .terminal {
+  position: relative;
+  z-index: 2;
+}
