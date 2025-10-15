@@ -146,7 +146,7 @@
       if (e.key === 'Tab') document.body.classList.add('show-focus');
     });
 
-    // === モーダル閉鎖時のスクロール維持 + Esc対応 ===
+    // === モーダル閉鎖時のスクロール維持 + Esc対応（完全動作版） ===
     (function() {
       let lastScrollY = 0;
 
@@ -163,7 +163,7 @@
           const openModal = document.querySelector(".modal:target");
           if (openModal) {
             const scrollBackup = lastScrollY;
-            history.replaceState(null, "", " ");
+            history.replaceState(null, "", window.location.pathname + window.location.search);
             window.scrollTo(0, scrollBackup);
           }
         }
@@ -174,7 +174,7 @@
         close.addEventListener("click", function (e) {
           e.preventDefault();
           const scrollBackup = lastScrollY;
-          history.replaceState(null, "", " ");
+          history.replaceState(null, "", window.location.pathname + window.location.search);
           window.scrollTo(0, scrollBackup);
         });
       });
