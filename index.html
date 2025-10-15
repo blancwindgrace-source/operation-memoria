@@ -147,14 +147,38 @@
     });
   </script>
   <script>
-  document.addEventListener("keydown", function (event) {
-    if (event.key === "Escape") {
-      const openModal = document.querySelector(".modal:target");
-      if (openModal) {
-        window.location.hash = ""; // ハッシュを解除して閉じる
+  (function() {
+    let lastScrollY = 0;
+
+    // モーダルを開く前のスクロール位置を記録
+    document.addEventListener("click", function(e) {
+      if (e.target.matches("a.more")) {
+        lastScrollY = window.scrollY;
       }
-    }
-  });
+    });
+
+    // Escキーで閉じる＋スクロール維持
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape") {
+        const openModal = document.querySelector(".modal:target");
+        if (openModal) {
+          const scrollBackup = lastScrollY;
+          history.replaceState(null, "", " ");
+          window.scrollTo(0, scrollBackup);
+        }
+      }
+    });
+
+    // 「×」ボタンやリンククリック時もスクロール維持
+    document.querySelectorAll(".modal-close").forEach(close => {
+      close.addEventListener("click", function (e) {
+        e.preventDefault();
+        const scrollBackup = lastScrollY;
+        history.replaceState(null, "", " ");
+        window.scrollTo(0, scrollBackup);
+      });
+    });
+  })();
 </script>
 
 </body>
