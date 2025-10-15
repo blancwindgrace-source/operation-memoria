@@ -169,13 +169,19 @@ body{
   z-index:50;
 }
 .modal.active { display: flex; }
-.modal-dialog{
-  width:min(720px, 94vw);
-  background:var(--panel);
-  border:1px solid var(--line);
-  border-radius:12px;
-  padding:18px 18px 14px;
-  box-shadow:0 10px 40px rgba(0,0,0,.5);
+.modal-dialog {
+  width: min(720px, 94vw);
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 18px 18px 14px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+
+  /* ★ 中央寄せを強制するための追加 ★ */
+  margin: auto;
+  position: relative;
+  top: 0;
+  left: 0;
 }
 .modal-dialog h3{margin:.2rem 0 .6rem; color:#e2e8f0}
 .modal-dialog p{margin:.3rem 0}
