@@ -134,14 +134,17 @@
     <p>観測員の端末に向けて攻撃性を示すため、機器の段階的遮断を実施。</p>
 
     <!-- 🔽 ここから追加 -->
-    <p class="security-level" id="securityLevelIV">セキュリティレベルⅣ</p>
+<div id="passPrompt" class="pass-window hidden">
+  <p>ACCESS CODE REQUIRED</p>
 
-    <div id="passPrompt" class="pass-window hidden">
-      <p>ACCESS CODE REQUIRED</p>
-      <input type="password" id="passInput" placeholder="ENTER CODE">
-      <button id="passSubmit">VERIFY</button>
-      <p id="passMsg" class="pass-msg"></p>
-    </div>
+  <div class="pass-input-wrapper">
+    <input type="password" id="passInput" placeholder="ENTER CODE">
+    <button id="togglePass" aria-label="Show password">👁</button>
+  </div>
+
+  <button id="passSubmit">VERIFY</button>
+  <p id="passMsg" class="pass-msg"></p>
+</div>
     <!-- 🔼 ここまで追加 -->
 
   </div>
