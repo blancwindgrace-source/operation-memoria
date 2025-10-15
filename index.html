@@ -151,12 +151,26 @@
 <section id="modal-helios9" class="modal" aria-label="HELIOS Log">
   <div class="modal-dialog">
     <button class="modal-close" aria-label="Close">&times;</button>
-      <h3>Observation Log: HELIOS-9</h3>
-      <p class="mono">Timestamp 03:22:05 JST</p>
-      <p>臨界域周辺で温度急上昇を確認。A-ZERO干渉波で位相を拡散。観測は継続。</p>
-      <p>対象は救済の語彙を用いるが実質は焼却行為。対話は不可。</p>
+    <h3>Observation Log: HELIOS-9</h3>
+    <p class="mono">Timestamp 03:22:05 JST</p>
+    <p>臨界域周辺で温度急上昇を確認。A-ZERO干渉波で位相を拡散。観測は継続。</p>
+    <p>対象は救済の語彙を用いるが実質は焼却行為。対話は不可。</p>
+
+    <!-- 🔽 セキュリティ＆パスワード入力 -->
+    <p class="security-level" id="securityLevelH9">セキュリティレベルⅣ</p>
+
+    <div id="passPromptH9" class="pass-window hidden">
+      <p>ACCESS CODE REQUIRED</p>
+      <div class="pass-input-wrapper">
+        <input type="password" id="passInputH9" placeholder="ENTER CODE">
+        <button id="togglePassH9" aria-label="Show password">👁</button>
+      </div>
+      <button id="passSubmitH9">VERIFY</button>
+      <p id="passMsgH9" class="pass-msg"></p>
     </div>
-  </section>
+    <!-- 🔼 ここまで追加 -->
+  </div>
+</section>
 
 <script>
 /* === Boot（起動シーケンス）=== */
@@ -277,6 +291,7 @@ if (passSubmit) {
     }
   });
 }
+  
 /* === パスワード表示切り替え === */
 const togglePass = document.getElementById('togglePass');
 if (togglePass && passInput) {
@@ -284,6 +299,50 @@ if (togglePass && passInput) {
     const type = passInput.getAttribute('type') === 'password' ? 'text' : 'password';
     passInput.setAttribute('type', type);
     togglePass.textContent = type === 'password' ? '👁' : '🙈';
+  });
+}
+/* === HELIOS-9 アクセス制御 === */
+const secBtnH9 = document.getElementById('securityLevelH9');
+const passWinH9 = document.getElementById('passPromptH9');
+const passBtnH9 = document.getElementById('passSubmitH9');
+const passInputH9 = document.getElementById('passInputH9');
+const passMsgH9 = document.getElementById('passMsgH9');
+const togglePassH9 = document.getElementById('togglePassH9');
+
+if (secBtnH9) {
+  secBtnH9.addEventListener('click', () => {
+    passWinH9.classList.toggle('hidden');
+    passMsgH9.textContent = '';
+    passInputH9.value = '';
+  });
+}
+
+// 👁 パスワード表示切替
+if (togglePassH9 && passInputH9) {
+  togglePassH9.addEventListener('click', () => {
+    const type = passInputH9.getAttribute('type') === 'password' ? 'text' : 'password';
+    passInputH9.setAttribute('type', type);
+    togglePassH9.textContent = type === 'password' ? '👁' : '🙈';
+  });
+}
+
+// パスワード検証処理
+if (passBtnH9) {
+  passBtnH9.addEventListener('click', () => {
+    const code = passInputH9.value.trim().toUpperCase();
+
+    if (code === 'SOL-09-HELIOS') { // ✅ 成功パス
+      passMsgH9.innerHTML = '<span style="color:#ff6600;">[ALERT]</span> Core Temperature Rising...';
+      setTimeout(() => {
+        passMsgH9.innerHTML = '<span style="color:#ffaa00;">[SYSTEM]</span> Emergency Containment...';
+      }, 900);
+      setTimeout(() => {
+        window.location.href = './helios.html';
+      }, 2500);
+    } else {
+      passMsgH9.textContent = 'ACCESS DENIED';
+      passMsgH9.style.color = '#ff4444';
+    }
   });
 }
 
