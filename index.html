@@ -271,6 +271,16 @@ passBtn.addEventListener('click', () => {
   }
 });
 </script>
+  <script>
+  // === Prevent scroll jump when modal opens ===
+  window.addEventListener("hashchange", () => {
+    if (location.hash.includes("modal-")) {
+      document.body.classList.add("modal-open");
+    } else {
+      document.body.classList.remove("modal-open");
+    }
+  });
+</script>
 
 </body>
 </html>
