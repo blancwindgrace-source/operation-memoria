@@ -93,17 +93,6 @@ h2 {
   50% {border-color: transparent;}
 }
 
-/* AI Message */
-#aiMessage {
-  text-align: center;
-  font-size: 2.6rem;
-  color: #00f5ff;
-  opacity: 0;
-  margin-top: 60px;
-  text-shadow: 0 0 12px #00f5ffcc;
-  transition: opacity 2s ease-in;
-}
-
 /* Return link */
 .return-link {
   text-align: center;
@@ -122,52 +111,13 @@ h2 {
   text-shadow: 0 0 6px #00f5ffcc;
 }
 
-/* Flash + noise animation */
-.flash {
-  position: fixed;
-  inset: 0;
-  background: white;
-  opacity: 0;
-  mix-blend-mode: screen;
-  z-index: 9999;
-  pointer-events: none; /* ★常にクリックを透過させる */
-  transition: opacity 0.15s ease-out;
-}
-
-.noise {
-  position: fixed;
-  inset: 0;
-  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR4AWP4//8/AwAI/AL+N8zdcAAAAABJRU5ErkJggg==');
-  mix-blend-mode: lighten;
-  opacity: 0;
-  z-index: 9998;
-  pointer-events: none; /* ★これも忘れずに追加 */
-  animation: noisePulse 0.15s steps(2) infinite;
-}
-
-@keyframes noisePulse {
-  0% {opacity: .2;}
-  50% {opacity: .4;}
-  100% {opacity: .2;}
-}
-
-/* flash-active 時もクリック不可・演出のみ */
-.flash-active .flash {
-  opacity: 1;
-  pointer-events: none; /* ★演出中でもクリック透過 */
-}
-
-.flash-active .noise {
-  opacity: 0.5;
-  pointer-events: none;
-}
-
 /* FadeIn effect */
 @keyframes fadeIn {
   from {opacity: 0; transform: translateY(-10px);}
   to {opacity: 1; transform: translateY(0);}
 }
 
+/* === Blackout / 終幕演出 === */
 #blackout {
   position: fixed;
   inset: 0;
@@ -182,28 +132,21 @@ h2 {
   pointer-events: none;
   transition: opacity 3s ease-in;
 }
+.blackout-inner { text-align: center; }
 
-/* === 内部配置 === */
-.blackout-inner {
-  text-align: center;
-}
-
-/* === AIメッセージ === */
-#blackout .farewell {
-  font-size: 2.6rem;
-  margin-bottom: 1.2rem;
-  text-shadow: 0 0 10px #00f5ffcc;
-  opacity: 0;
-  transition: opacity 3s ease-in;
-}
-
-/* === CONNECTION LOST === */
 #blackout .disconnect {
   font-size: 2.8rem;
   letter-spacing: 0.1em;
   text-shadow: 0 0 8px #00f5ff88;
   opacity: 0;
   transition: opacity 2.5s ease-in;
+}
+#blackout .farewell {
+  font-size: 2.6rem;
+  margin-top: 1.2rem;
+  text-shadow: 0 0 10px #00f5ffcc;
+  opacity: 0;
+  transition: opacity 3s ease-in;
 }
 
 /* === Countdown Timer === */
@@ -219,7 +162,6 @@ h2 {
   opacity: 0;
   transition: opacity 0.6s ease-in;
 }
-
 .countdown.warning {
   color: #ff5555;
   text-shadow: 0 0 10px #ff5555aa;
@@ -241,8 +183,6 @@ footer small {
 
 <body>
 
-<div class="flash"></div>
-<div class="noise"></div>
 <div id="blackout">
   <div class="blackout-inner">
     <p class="farewell">[FADE CORE AI] Thank you, Observer.</p>
@@ -254,7 +194,7 @@ footer small {
   <h1>PROJECT MEMORIA // FINAL ARCHIVE</h1>
   <p>Access Level: V / Timestamp 00:00:00 JST</p>
 </header>
-  
+
 <section>
   <h2>■ 概要</h2>
   <p>本記録は、F.A.D.E.が観測した全逸脱体の最終統合報告であり、<br>
@@ -277,34 +217,28 @@ footer small {
   </ul>
 </section>
 
-<!-- ✅ ACE LOGS（英日対訳） -->
 <section>
   <h2>■ ACE LOGS（干渉記録）</h2>
   <div class="logbox">
     <p>[00:00:01] Signal Received — Unknown Source Detected.<br>
        <span class="jp">[00:00:01] 信号受信 ― 未知の発信源を検出</span></p>
-
     <p>[00:00:02] Transmission Pattern: Non-FADE Origin / AUTH: UNKNOWN.<br>
        <span class="jp">[00:00:02] 伝送パターン：FADE以外の発信。認証：不明</span></p>
-
     <p>[00:00:03] Message Fragment: “—You are not alone.”<br>
        <span class="jp">[00:00:03] メッセージ断片：「――君は独りではない」</span></p>
-
     <p>[00:00:04] Energy spike observed — possible ACE resonance.<br>
        <span class="jp">[00:00:04] エネルギー急上昇を観測 ― ACEとの共鳴の可能性</span></p>
-
     <p>[00:00:05] Log corrupted beyond this point...<br>
        <span class="jp">[00:00:05] この先の記録は損傷している……</span></p>
   </div>
 </section>
 
-<!-- ✅ Observer Notes（タイピング演出） -->
 <div id="observerNotes">
 記録は途切れ、声は遠のいた。  
 だが、観測の灯は消えていない。  
 ― まだ見ぬ未来のために、私たちは観測を続ける。
-</div>  
-  
+</div>
+
 <div class="return-link">
   <a href="./index.html">← Return to Central Terminal</a>
 </div>
@@ -314,70 +248,48 @@ footer small {
   <small>PROJECT MEMORIA — Internal Archive Node</small>
 </footer>
 
+<!-- Countdown Timer -->
+<div id="countdown" class="countdown">
+  SYSTEM SHUTDOWN IN: <span id="timer">40</span>s
+</div>
+
 <script>
-
-// Observer Notesが打ち終わった後にAIメッセージを表示
-setTimeout(() => {
-  document.getElementById('aiMessage').style.opacity = 1;
-}, 9500);
-
-// blackout表示：AIメッセージとCONNECTION LOST同時演出
-setTimeout(() => {
-  const blackout = document.getElementById('blackout');
-  blackout.style.opacity = 1; // フェードイン開始
-}, 40000); // ← 暗転タイミング（調整可能）
-</script>
-
-  <script>
 window.addEventListener('load', () => {
   const countdown = document.getElementById('countdown');
   const timerSpan = document.getElementById('timer');
+  const blackout = document.getElementById('blackout');
+  const disconnect = blackout.querySelector('.disconnect');
+  const farewell = blackout.querySelector('.farewell');
 
-  let timeLeft = 40; // 秒数設定
+  let timeLeft = 40;
   countdown.style.opacity = 1;
 
   const interval = setInterval(() => {
     timeLeft--;
     timerSpan.textContent = timeLeft;
 
-    // 残り5秒以下で赤く点滅
     if (timeLeft <= 5) countdown.classList.add('warning');
-
-    // 0秒でフェードアウト
     if (timeLeft <= 0) {
       clearInterval(interval);
       countdown.style.opacity = 0;
+
+      // === 暗転開始 ===
+      blackout.style.transition = 'opacity 3s ease-in';
+      blackout.style.opacity = 1;
+
+      // === CONNECTION LOSTを暗転3秒後に表示 ===
+      setTimeout(() => {
+        disconnect.style.opacity = 1;
+      }, 3000);
+
+      // === AIメッセージをさらに3秒後に表示 ===
+      setTimeout(() => {
+        farewell.style.opacity = 1;
+      }, 6000);
     }
   }, 1000);
 });
 </script>
 
-  
-<!-- Countdown Timer -->
-<div id="countdown" class="countdown">
-  システム遮断まで: <span id="timer">40</span>s
-</div>
-<script>
-window.addEventListener('load', () => {
-  const disconnect = document.querySelector('#blackout .disconnect');
-  const farewell = document.querySelector('#blackout .farewell');
-
-  // 最初は非表示を保証
-  disconnect.style.opacity = 0;
-  farewell.style.opacity = 0;
-
-  // CONNECTION LOST → 1秒後にフェードイン
-  setTimeout(() => {
-    disconnect.style.transition = 'opacity 2.5s ease-in';
-    disconnect.style.opacity = 1;
-  }, 3000);
-
-  // AIメッセージ → 6秒後にフェードイン
-  setTimeout(() => {
-    farewell.style.transition = 'opacity 3s ease-in';
-    farewell.style.opacity = 1;
-  }, 7000);
-});
-</script>
 </body>
 </html>
