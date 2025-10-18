@@ -173,8 +173,9 @@ h2 {
   font-size: 2.2rem;
   letter-spacing: 0.15em;
   text-shadow: 0 0 16px #00f5ffcc;
-  z-index: 10000;
+  z-index: -1; /* ★ 修正ポイント：他要素より奥に配置 */
   transition: opacity 3s ease-in;
+  pointer-events: none; /* ★ クリックブロックを確実に防ぐ */
 }
 
 /* Footer */
@@ -265,11 +266,6 @@ footer small {
 </footer>
 
 <script>
-// Flash演出
-window.addEventListener('load', () => {
-  document.body.classList.add('flash-active');
-  setTimeout(() => document.body.classList.remove('flash-active'), 300);
-});
 
 // Observer Notesが打ち終わった後にAIメッセージを表示
 setTimeout(() => {
