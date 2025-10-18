@@ -84,16 +84,6 @@ tr:hover td {
 .active { color: #66ccff; text-shadow: 0 0 6px #66ccff66; }
 .classified { color: #ff00ff; text-shadow: 0 0 6px #ff00ff66; }
 
-/* Hover Animation */
-tr:hover td:first-child::before {
-  content: "[ACCESSING…] ";
-  color: #ff5555cc;
-  animation: blink 1s infinite;
-}
-@keyframes blink {
-  50% { opacity: 0.4; }
-}
-
 /* === Modal === */
 .modal {
   display: none;
