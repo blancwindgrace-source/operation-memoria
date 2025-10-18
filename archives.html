@@ -289,30 +289,47 @@ document.addEventListener("keydown",e=>{
 });
 
 /* === セキュリティレベルⅤ 認証処理 === */
-const secBtnV=document.getElementById("securityLevelV");
-const passWinV=document.getElementById("passPromptV");
-const passBtnV=document.getElementById("passSubmitV");
-const passInputV=document.getElementById("passInputV");
-const passMsgV=document.getElementById("passMsgV");
+  // --- FLASH + NOISE EFFECT SETUP ---
+  const flash = document.createElement('div');
+  flash.className = 'flash-overlay';
+  const noise = document.createElement('div');
+  noise.className = 'noise-layer';
+  document.body.appendChild(flash);
+  document.body.appendChild(noise);
 
-if(secBtnV){
-  secBtnV.addEventListener("click",()=>{
-    passWinV.classList.toggle("hidden");
-    passMsgV.textContent="";
-    passInputV.value="";
-  });
-}
-if(passBtnV){
-  passBtnV.addEventListener("click",()=>{
-    const code=passInputV.value.trim().toUpperCase();
-    if(code==="PROJECT-MEMORIA"){
-      passMsgV.innerHTML='<span style="color:#00ff88;">[ACCESS GRANTED]</span> Redirecting...';
-      setTimeout(()=>{window.location.href="./memoria.html";},2000);
-    }else{
-      passMsgV.innerHTML='<span style="color:#ff3333;">ACCESS DENIED</span>';
-    }
-  });
-}
+  const secBtnV = document.getElementById('securityLevelV');
+  const passWinV = document.getElementById('passPromptV');
+  const passBtnV = document.getElementById('passSubmitV');
+  const passInputV = document.getElementById('passInputV');
+  const passMsgV = document.getElementById('passMsgV');
+
+  if (secBtnV) {
+    secBtnV.addEventListener('click', () => {
+      passWinV.classList.toggle('hidden');
+      passMsgV.textContent = '';
+      passInputV.value = '';
+    });
+  }
+
+  if (passBtnV) {
+    passBtnV.addEventListener('click', () => {
+      const code = passInputV.value.trim().toUpperCase();
+
+      if (code === 'PROJECT-MEMORIA') { // ✅ 任意で変更可
+        passMsgV.innerHTML = '<span style="color:#00ff88;">[ACCESS GRANTED]</span> Redirecting...';
+
+        // --- 一瞬の閃光＋ノイズ ---
+        document.body.classList.add('flash-active');
+        setTimeout(() => { document.body.classList.remove('flash-active'); }, 400);
+
+        setTimeout(() => {
+          window.location.href = './memoria.html';
+        }, 1200);
+      } else {
+        passMsgV.innerHTML = '<span style="color:#ff3333;">ACCESS DENIED</span>';
+      }
+    });
+  }
 </script>
 </body>
 </html>
