@@ -128,30 +128,38 @@ h2 {
   inset: 0;
   background: white;
   opacity: 0;
-  pointer-events: none;
   mix-blend-mode: screen;
   z-index: 9999;
+  pointer-events: none; /* ★常にクリックを透過させる */
+  transition: opacity 0.15s ease-out;
 }
+
 .noise {
   position: fixed;
   inset: 0;
   background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR4AWP4//8/AwAI/AL+N8zdcAAAAABJRU5ErkJggg==');
-  opacity: 0;
   mix-blend-mode: lighten;
+  opacity: 0;
   z-index: 9998;
+  pointer-events: none; /* ★これも忘れずに追加 */
   animation: noisePulse 0.15s steps(2) infinite;
 }
+
 @keyframes noisePulse {
   0% {opacity: .2;}
   50% {opacity: .4;}
   100% {opacity: .2;}
 }
+
+/* flash-active 時もクリック不可・演出のみ */
 .flash-active .flash {
   opacity: 1;
-  transition: opacity 0.15s ease-out;
+  pointer-events: none; /* ★演出中でもクリック透過 */
 }
+
 .flash-active .noise {
   opacity: 0.5;
+  pointer-events: none;
 }
 
 /* FadeIn effect */
