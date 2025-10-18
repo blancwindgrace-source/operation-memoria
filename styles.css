@@ -460,3 +460,78 @@ footer .btn.ghost:hover {
   background: #00f5ff22;
   color: #ffffff;
 }
+/* セキュリティレベル表示 */
+.security-level {
+  display: inline-block;
+  margin-top: 16px;
+  color: #00f5ff;
+  font-size: 0.95rem;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  text-align: left;
+  border-left: 2px solid #00f5ff66;
+  padding-left: 10px;
+  transition: all 0.3s ease;
+}
+.security-level:hover {
+  color: #ff4444;
+  border-left-color: #ff4444aa;
+  text-shadow: 0 0 8px #ff5555aa;
+}
+
+/* パスワードウィンドウ */
+.pass-window {
+  margin-top: 12px;
+  text-align: left;
+  background: rgba(255,255,255,0.04);
+  padding: 14px 14px 10px;
+  border-radius: 6px;
+  border-left: 2px solid #00f5ff55;
+  font-size: 0.9rem;
+  animation: fadeIn 0.4s ease;
+}
+.pass-window.hidden { display: none; }
+.pass-window p {
+  margin: 4px 0;
+  color: #7deaff;
+  font-size: 0.85rem;
+}
+.pass-window input {
+  background: #000;
+  color: #00f5ff;
+  border: 1px solid #00f5ff66;
+  padding: 6px;
+  width: 160px;
+  text-align: center;
+  border-radius: 4px;
+}
+.pass-window button {
+  background: transparent;
+  color: #00f5ff;
+  border: 1px solid #00f5ff66;
+  padding: 5px 10px;
+  margin-left: 6px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.pass-window button:hover {
+  background-color: #00f5ff22;
+  color: #fff;
+}
+
+/* パスワード切替ボタン */
+#togglePassV {
+  background: transparent;
+  color: #00f5ff;
+  border: 1px solid #00f5ff66;
+  padding: 5px 8px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+#togglePassV:hover {
+  background: #00f5ff22;
+  color: #ffffff;
+}
