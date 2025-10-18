@@ -186,7 +186,6 @@ h2 {
 /* === 内部配置 === */
 .blackout-inner {
   text-align: center;
-  animation: fadeInText 2s ease-in forwards;
 }
 
 /* === AIメッセージ === */
@@ -195,8 +194,7 @@ h2 {
   margin-bottom: 1.2rem;
   text-shadow: 0 0 10px #00f5ffcc;
   opacity: 0;
-  animation: fadeInText 3s ease-in forwards;
-  animation-delay: 4.0s;
+  transition: opacity 3s ease-in;
 }
 
 /* === CONNECTION LOST === */
@@ -205,14 +203,7 @@ h2 {
   letter-spacing: 0.1em;
   text-shadow: 0 0 8px #00f5ff88;
   opacity: 0;
-  animation: fadeInText 3s ease-in forwards;
-  animation-delay: 0.8s;
-}
-
-/* === フェードインキー === */
-@keyframes fadeInText {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+  transition: opacity 2.5s ease-in;
 }
 
 /* === Countdown Timer === */
@@ -366,6 +357,27 @@ window.addEventListener('load', () => {
 <div id="countdown" class="countdown">
   システム遮断まで: <span id="timer">40</span>s
 </div>
+<script>
+window.addEventListener('load', () => {
+  const disconnect = document.querySelector('#blackout .disconnect');
+  const farewell = document.querySelector('#blackout .farewell');
 
+  // 最初は非表示を保証
+  disconnect.style.opacity = 0;
+  farewell.style.opacity = 0;
+
+  // CONNECTION LOST → 1秒後にフェードイン
+  setTimeout(() => {
+    disconnect.style.transition = 'opacity 2.5s ease-in';
+    disconnect.style.opacity = 1;
+  }, 1000);
+
+  // AIメッセージ → 6秒後にフェードイン
+  setTimeout(() => {
+    farewell.style.transition = 'opacity 3s ease-in';
+    farewell.style.opacity = 1;
+  }, 4000);
+});
+</script>
 </body>
 </html>
