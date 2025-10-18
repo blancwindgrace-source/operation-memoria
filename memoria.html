@@ -177,24 +177,14 @@ h2 {
   justify-content: center;
   flex-direction: column;
   color: #00f5ff;
-  opacity: 0;
+  opacity: 1; /* ← 最初から不透明 */
   z-index: 10000;
   pointer-events: none;
-  transition: opacity 3s ease-in;
 }
 
 /* === 内部配置 === */
 .blackout-inner {
   text-align: center;
-}
-
-/* === AIメッセージ === */
-#blackout .farewell {
-  font-size: 2.6rem;
-  margin-bottom: 1.2rem;
-  text-shadow: 0 0 10px #00f5ffcc;
-  opacity: 0;
-  transition: opacity 3s ease-in;
 }
 
 /* === CONNECTION LOST === */
@@ -205,6 +195,16 @@ h2 {
   opacity: 0;
   transition: opacity 2.5s ease-in;
 }
+
+/* === AIメッセージ === */
+#blackout .farewell {
+  font-size: 2.6rem;
+  margin-top: 1.2rem;
+  text-shadow: 0 0 10px #00f5ffcc;
+  opacity: 0;
+  transition: opacity 3s ease-in;
+}
+
 
 /* === Countdown Timer === */
 .countdown {
@@ -362,19 +362,17 @@ window.addEventListener('load', () => {
   const disconnect = document.querySelector('#blackout .disconnect');
   const farewell = document.querySelector('#blackout .farewell');
 
-  // 最初は非表示を保証
+  // 最初は非表示
   disconnect.style.opacity = 0;
   farewell.style.opacity = 0;
 
-  // CONNECTION LOST → 1秒後にフェードイン
+  // CONNECTION LOST → 1秒後に表示
   setTimeout(() => {
-    disconnect.style.transition = 'opacity 2.5s ease-in';
     disconnect.style.opacity = 1;
   }, 1000);
 
-  // AIメッセージ → 6秒後にフェードイン
+  // AIメッセージ → 6秒後に表示
   setTimeout(() => {
-    farewell.style.transition = 'opacity 3s ease-in';
     farewell.style.opacity = 1;
   }, 4000);
 });
