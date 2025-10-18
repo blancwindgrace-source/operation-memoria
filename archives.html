@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>F.A.D.E. // PROJECT ARCHIVES</title>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #0a0e12;
+  color: #dbe9ff;
+  font-family: 'Share Tech Mono', monospace;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* Header */
+header {
+  text-align: center;
+  padding: 60px 20px 10px;
+}
+header h1 {
+  color: #ff5c5c;
+  font-size: 1.8rem;
+  letter-spacing: 0.12em;
+  text-shadow: 0 0 12px #ff1e1eaa;
+}
+header p {
+  color: #ffaaaa;
+  font-size: 0.9rem;
+  margin: 6px 0 0;
+}
+
+/* Section */
+section {
+  width: 90%;
+  max-width: 900px;
+  margin: 30px auto;
+  background-color: #10161b;
+  border: 1px solid #ff555533;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 0 12px #ff444422;
+}
+
+/* Table Layout */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  cursor: pointer;
+}
+th, td {
+  border: 1px solid #ff666622;
+  padding: 10px 12px;
+  text-align: left;
+}
+th {
+  background-color: #181d22;
+  color: #ff7f7f;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+td {
+  background-color: #12181e;
+  color: #eee;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+tr:hover td {
+  background-color: #ff2d2d11;
+  color: #fff;
+}
+
+/* Status Colors */
+.status {
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.success { color: #00ff9d; text-shadow: 0 0 6px #00ff9d66; }
+.failure { color: #ff3b3b; text-shadow: 0 0 6px #ff3b3b66; }
+.suspended { color: #ffaa00; text-shadow: 0 0 6px #ffaa0066; }
+.active { color: #66ccff; text-shadow: 0 0 6px #66ccff66; }
+.classified { color: #ff00ff; text-shadow: 0 0 6px #ff00ff66; }
+
+/* Hover Animation */
+tr:hover td:first-child::before {
+  content: "[ACCESSING…] ";
+  color: #ff5555cc;
+  animation: blink 1s infinite;
+}
+@keyframes blink {
+  50% { opacity: 0.4; }
+}
+
+/* === Modal === */
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.8);
+  backdrop-filter: blur(3px);
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+.modal.active {
+  display: flex;
+}
+.modal-content {
+  background-color: #12171c;
+  border: 1px solid #ff555533;
+  border-radius: 8px;
+  padding: 20px;
+  max-width: 720px;
+  width: 90%;
+  box-shadow: 0 0 20px #ff444433;
+  animation: fadeIn 0.5s ease;
+  position: relative;
+}
+.modal h3 {
+  color: #ff5c5c;
+  margin-top: 0;
+}
+.modal p {
+  color: #eee;
+  margin: 10px 0;
+}
+.modal-close {
+  position: absolute;
+  right: 12px;
+  top: 8px;
+  color: #ff8888;
+  font-size: 24px;
+  cursor: pointer;
+}
+.modal-close:hover { color: #fff; }
+
+/* Return link */
+.return-link {
+  text-align: center;
+  margin: 40px 0;
+}
+.return-link a {
+  color: #ff5c5c;
+  text-decoration: none;
+  border: 1px solid #ff5c5c66;
+  padding: 8px 16px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+.return-link a:hover {
+  background-color: #ff5c5c22;
+  text-shadow: 0 0 6px #ff7777cc;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  color: #ff888888;
+  font-size: 0.8rem;
+  padding: 20px;
+}
+footer small {
+  display: block;
+  margin-top: 6px;
+}
+
+/* Page Fade Animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+section, header, footer { animation: fadeIn 1.2s ease-out; }
+</style>
+</head>
+
+<body>
+<header>
+  <h1>PROJECT ARCHIVES // ACCESS LEVEL: IV</h1>
+  <p>F.A.D.E.機密観測任務記録アーカイブ</p>
+</header>
+
+<section>
+  <p>F.A.D.E.による過去の観測・封鎖作戦の記録。<br>
+  一部の情報は機密指定または欠損しています。</p>
+
+  <table id="archiveTable">
+    <tr>
+      <th>コードネーム</th>
+      <th>作戦名</th>
+      <th>状態</th>
+      <th>概要</th>
+    </tr>
+    <tr data-modal="modal-nullfold">
+      <td>PROJECT NULLFOLD</td>
+      <td>Nullfold観測失敗記録</td>
+      <td class="status failure">FAILURE</td>
+      <td>観測途絶により現象拡大を招いた初の例。</td>
+    </tr>
+    <tr data-modal="modal-eidolon">
+      <td>OPERATION EIDOLON</td>
+      <td>Eidolon観測試験</td>
+      <td class="status suspended">SUSPENDED</td>
+      <td>初の集団観測型任務。L-EX共鳴事故により凍結。</td>
+    </tr>
+    <tr data-modal="modal-memoria">
+      <td>OPERATION MEMORIA</td>
+      <td>廃都市観測任務</td>
+      <td class="status active">ACTIVE</td>
+      <td>現行任務。観測および記録を継続中。</td>
+    </tr>
+    <tr data-modal="modal-redwing">
+      <td>PROJECT REDWING</td>
+      <td>異常音波封鎖試験</td>
+      <td class="status success">SUCCESS</td>
+      <td>初のA-ZERO安定干渉成功例。</td>
+    </tr>
+    <tr data-modal="modal-omega">
+      <td>PROJECT OMEGA-GATE</td>
+      <td>無線干渉領域封鎖</td>
+      <td class="status classified">CLASSIFIED</td>
+      <td>情報非公開。ACE関連の記述が確認される。</td>
+    </tr>
+  </table>
+</section>
+
+<!-- モーダル一覧 -->
+<div id="modal-nullfold" class="modal">
+  <div class="modal-content">
+    <span class="modal-close">&times;</span>
+    <h3>PROJECT NULLFOLD // FAILURE LOG</h3>
+    <p>観測途絶による現象拡大を確認。第3観測隊が消息を絶つ。</p>
+    <p>本件以降、F.A.D.E.は「観測の継続こそが封鎖手段」と定義。</p>
+  </div>
+</div>
+
+<div id="modal-eidolon" class="modal">
+  <div class="modal-content">
+    <span class="modal-close">&times;</span>
+    <h3>OPERATION EIDOLON // SUSPENDED</h3>
+    <p>L-EX共鳴事故により観測員5名が意識融合。以後凍結。</p>
+    <p>事故の詳細は非公開。A-ZEROプロトコル試験に転用。</p>
+  </div>
+</div>
+
+<div id="modal-memoria" class="modal">
+  <div class="modal-content">
+    <span class="modal-close">&times;</span>
+    <h3>OPERATION MEMORIA // ACTIVE</h3>
+    <p>現行観測任務。廃都市における逸脱体の記録継続中。</p>
+    <p>対象はVOLTAGE、HELIOS-9を含む複数体。観測領域安定化成功。</p>
+  </div>
+</div>
+
+<div id="modal-redwing" class="modal">
+  <div class="modal-content">
+    <span class="modal-close">&times;</span>
+    <h3>PROJECT REDWING // SUCCESS</h3>
+    <p>初のA-ZERO安定干渉成功。音波異常領域を24時間封鎖。</p>
+    <p>現象消失後、周辺にACE反応を一時検出。</p>
+  </div>
+</div>
+
+<div id="modal-omega" class="modal">
+  <div class="modal-content">
+    <span class="modal-close">&times;</span>
+    <h3>PROJECT OMEGA-GATE // CLASSIFIED</h3>
+    <p>データ欠損。記録破損率98%。</p>
+    <p>残留ログ：「───ACE-01、応答を……」</p>
+  </div>
+</div>
+
+<div class="return-link">
+  <a href="./index.html">← Return to Main Observation Terminal</a>
+</div>
+
+<footer>
+  F.A.D.E. / Field Analysis & Deviation Enforcement<br>
+  <small>Observation continuity is containment.</small>
+</footer>
+
+<script>
+document.querySelectorAll("tr[data-modal]").forEach(row => {
+  row.addEventListener("click", () => {
+    const id = row.dataset.modal;
+    const modal = document.getElementById(id);
+    modal.classList.add("active");
+  });
+});
+
+document.querySelectorAll(".modal-close").forEach(btn => {
+  btn.addEventListener("click", e => {
+    e.target.closest(".modal").classList.remove("active");
+  });
+});
+
+document.querySelectorAll(".modal").forEach(modal => {
+  modal.addEventListener("click", e => {
+    if (e.target === modal) modal.classList.remove("active");
+  });
+});
+
+document.addEventListener("keydown", e => {
+  if (e.key === "Escape") {
+    document.querySelectorAll(".modal.active").forEach(m => m.classList.remove("active"));
+  }
+});
+</script>
+</body>
+</html>
