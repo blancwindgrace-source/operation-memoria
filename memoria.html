@@ -170,10 +170,10 @@ h2 {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 2.2rem;
+  font-size: 2.2rem; /* ← ★ここを変更する！ */
   letter-spacing: 0.15em;
-  text-shadow: 0 0 16px #00f5ffcc;
-  z-index: -1; /* ★ 修正ポイント：他要素より奥に配置 */
+  text-shadow: 0 0 16px #00f5ff88;
+  z-index: 10000;
   transition: opacity 3s ease-in;
   pointer-events: none; /* ★ クリックブロックを確実に防ぐ */
 }
@@ -276,10 +276,6 @@ setTimeout(() => {
 setTimeout(() => {
   const blackout = document.getElementById('blackout');
   blackout.style.opacity = 1;
-  blackout.style.zIndex = 9999;       // ← 表示時は最前面に
-  setTimeout(() => {
-    blackout.style.zIndex = -1;       // ← 表示後すぐに背面に戻す（クリック可能にする）
-  }, 6000); // ← 4秒後に背面へ
 }, 60000);
 </script>
 
