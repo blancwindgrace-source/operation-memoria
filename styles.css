@@ -446,3 +446,17 @@ footer .btn.ghost:hover {
   background-color: #00f5ff22;
   text-shadow: 0 0 6px #00f5ffcc;
 }
+#togglePassV {
+  background: transparent;
+  color: #00f5ff;
+  border: 1px solid #00f5ff66;
+  padding: 5px 8px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+#togglePassV:hover {
+  background: #00f5ff22;
+  color: #ffffff;
+}
