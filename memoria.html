@@ -168,22 +168,51 @@ h2 {
   to {opacity: 1; transform: translateY(0);}
 }
 
-/* End blackout screen */
 #blackout {
   position: fixed;
   inset: 0;
   background-color: #000;
-  color: #00f5ff;
-  opacity: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 2.6rem; /* ← ★ここを変更する！ */
-  letter-spacing: 0.15em;
-  text-shadow: 0 0 16px #00f5ff88;
+  flex-direction: column;
+  color: #00f5ff;
+  opacity: 0;
   z-index: 10000;
+  pointer-events: none;
   transition: opacity 3s ease-in;
-  pointer-events: none; /* ★ クリックブロックを確実に防ぐ */
+}
+
+/* === 内部配置 === */
+.blackout-inner {
+  text-align: center;
+  animation: fadeInText 2s ease-in forwards;
+}
+
+/* === AIメッセージ === */
+#blackout .farewell {
+  font-size: 2.6rem;
+  margin-bottom: 1.2rem;
+  text-shadow: 0 0 10px #00f5ffcc;
+  opacity: 0;
+  animation: fadeInText 3s ease-in forwards;
+  animation-delay: 0.8s;
+}
+
+/* === CONNECTION LOST === */
+#blackout .disconnect {
+  font-size: 2.8rem;
+  letter-spacing: 0.1em;
+  text-shadow: 0 0 8px #00f5ff88;
+  opacity: 0;
+  animation: fadeInText 3s ease-in forwards;
+  animation-delay: 1.5s;
+}
+
+/* === フェードインキー === */
+@keyframes fadeInText {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 /* Footer */
@@ -204,7 +233,12 @@ footer small {
 
 <div class="flash"></div>
 <div class="noise"></div>
-<div id="blackout">F.A.D.E. Terminal — CONNECTION LOST</div>
+<div id="blackout">
+  <div class="blackout-inner">
+    <p class="farewell">[FADE CORE AI] Thank you, Observer.</p>
+    <p class="disconnect">F.A.D.E. Terminal — CONNECTION LOST</p>
+  </div>
+</div>
 
 <header>
   <h1>PROJECT MEMORIA // FINAL ARCHIVE</h1>
@@ -261,9 +295,6 @@ footer small {
 ― まだ見ぬ未来のために、私たちは観測を続ける。
 </div>  
   
-<!-- ✅ FADE-AIメッセージ -->
-<div id="aiMessage">[FADE CORE AI] Thank you, Observer.</div>
-
 <div class="return-link">
   <a href="./index.html">← Return to Central Terminal</a>
 </div>
@@ -280,11 +311,11 @@ setTimeout(() => {
   document.getElementById('aiMessage').style.opacity = 1;
 }, 9500);
 
-// 暗転＋CONNECTION LOST表示（終幕）
+// blackout表示：AIメッセージとCONNECTION LOST同時演出
 setTimeout(() => {
   const blackout = document.getElementById('blackout');
-  blackout.style.opacity = 1;
-}, 60000);
+  blackout.style.opacity = 1; // フェードイン開始
+}, 60000); // ← 暗転タイミング（調整可能）
 </script>
 
 </body>
