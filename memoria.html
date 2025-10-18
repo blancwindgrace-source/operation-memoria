@@ -14,6 +14,7 @@ body {
   font-family: 'Share Tech Mono', monospace;
   line-height: 1.7;
   overflow-x: hidden;
+  position: relative;
 }
 
 /* Header */
@@ -95,11 +96,11 @@ h2 {
 /* AI Message */
 #aiMessage {
   text-align: center;
-  font-size: 1.2rem;
+  font-size: 1.6rem;
   color: #00f5ff;
   opacity: 0;
   margin-top: 60px;
-  text-shadow: 0 0 8px #00f5ffcc;
+  text-shadow: 0 0 12px #00f5ffcc;
   transition: opacity 2s ease-in;
 }
 
@@ -159,6 +160,24 @@ h2 {
   to {opacity: 1; transform: translateY(0);}
 }
 
+/* End blackout screen */
+#blackout {
+  position: fixed;
+  inset: 0;
+  background-color: #000;
+  color: #00f5ff;
+  opacity: 0;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  letter-spacing: 0.1em;
+  text-shadow: 0 0 8px #00f5ff88;
+  z-index: 10000;
+  transition: opacity 3s ease-in;
+}
+
 /* Footer */
 footer {
   text-align: center;
@@ -177,17 +196,18 @@ footer small {
 
 <div class="flash"></div>
 <div class="noise"></div>
+<div id="blackout">F.A.D.E. Terminal — CONNECTION LOST</div>
 
 <header>
   <h1>PROJECT MEMORIA // FINAL ARCHIVE</h1>
   <p>Access Level: V / Timestamp 00:00:00 JST</p>
 </header>
 
-<!-- ✅ Observer Notes（タイピング演出） -->
-<div id="observerNotes">
-記録は途切れ、声は遠のいた。  
-だが、観測の灯は消えていない。  
-― まだ見ぬ未来のために、私たちは観測を続ける。
+<!-- ✅ FADE-AIメッセージ -->
+<div id="aiMessage">[FADE CORE AI] Thank you, Observer.</div>
+
+<div class="return-link">
+  <a href="./index.html">← Return to Central Terminal</a>
 </div>
   
 <section>
@@ -233,12 +253,14 @@ footer small {
   </div>
 </section>
 
-<!-- ✅ FADE-AIメッセージ -->
-<div id="aiMessage">[FADE CORE AI] Thank you, Observer.</div>
-
-<div class="return-link">
-  <a href="./index.html">← Return to Central Terminal</a>
+<!-- ✅ Observer Notes（タイピング演出） -->
+<div id="observerNotes">
+記録は途切れ、声は遠のいた。  
+だが、観測の灯は消えていない。  
+― まだ見ぬ未来のために、私たちは観測を続ける。
 </div>
+
+
 
 <footer>
   F.A.D.E. / Field Analysis & Deviation Enforcement<br>
@@ -256,6 +278,12 @@ window.addEventListener('load', () => {
 setTimeout(() => {
   document.getElementById('aiMessage').style.opacity = 1;
 }, 9500);
+
+// 暗転＋CONNECTION LOST表示（終幕）
+setTimeout(() => {
+  const blackout = document.getElementById('blackout');
+  blackout.style.opacity = 1;
+}, 60000);
 </script>
 
 </body>
