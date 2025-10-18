@@ -271,61 +271,48 @@ section, header, footer { animation: fadeIn 1.2s ease-out; }
 </footer>
 
 <script>
-/* === 汎用モーダル制御 === */
-document.querySelectorAll(".open-modal").forEach(trigger => {
-  trigger.addEventListener("click", e => {
-    e.preventDefault();
-    const targetId = trigger.dataset.target;
-    const modal = document.getElementById(targetId);
-    if (modal) modal.classList.add("active");
+/* === 全モーダル制御 === */
+document.querySelectorAll("tr[data-modal]").forEach(row=>{
+  row.addEventListener("click",()=>{
+    const modal=document.getElementById(row.dataset.modal);
+    if(modal) modal.classList.add("active");
   });
 });
-
-document.querySelectorAll(".modal").forEach(modal => {
-  const closeBtn = modal.querySelector(".modal-close");
-
-  const closeModal = () => modal.classList.remove("active");
-
-  if (closeBtn) closeBtn.addEventListener("click", closeModal);
-  modal.addEventListener("click", e => {
-    if (e.target === modal) closeModal();
-  });
-  document.addEventListener("keydown", e => {
-    if (e.key === "Escape" && modal.classList.contains("active")) closeModal();
-  });
+document.querySelectorAll(".modal-close").forEach(btn=>{
+  btn.addEventListener("click",e=>e.target.closest(".modal").classList.remove("active"));
+});
+document.querySelectorAll(".modal").forEach(m=>{
+  m.addEventListener("click",e=>{ if(e.target===m) m.classList.remove("active"); });
+});
+document.addEventListener("keydown",e=>{
+  if(e.key==="Escape") document.querySelectorAll(".modal.active").forEach(m=>m.classList.remove("active"));
 });
 
 /* === セキュリティレベルⅤ 認証処理 === */
-const secBtnV = document.getElementById("securityLevelV");
-const passWinV = document.getElementById("passPromptV");
-const passBtnV = document.getElementById("passSubmitV");
-const passInputV = document.getElementById("passInputV");
-const passMsgV = document.getElementById("passMsgV");
+const secBtnV=document.getElementById("securityLevelV");
+const passWinV=document.getElementById("passPromptV");
+const passBtnV=document.getElementById("passSubmitV");
+const passInputV=document.getElementById("passInputV");
+const passMsgV=document.getElementById("passMsgV");
 
-if (secBtnV) {
-  secBtnV.addEventListener("click", () => {
+if(secBtnV){
+  secBtnV.addEventListener("click",()=>{
     passWinV.classList.toggle("hidden");
-    passMsgV.textContent = "";
-    passInputV.value = "";
+    passMsgV.textContent="";
+    passInputV.value="";
   });
 }
-
-if (passBtnV) {
-  passBtnV.addEventListener("click", () => {
-    const code = passInputV.value.trim().toUpperCase();
-
-    if (code === "BELIEVE-IN-DAWN") { // ← 任意のパスワードに変更可
-      passMsgV.innerHTML =
-        '<span style="color:#00ff88;">[ACCESS GRANTED]</span> Redirecting...';
-      setTimeout(() => {
-        window.location.href = "./memoria.html";
-      }, 2000);
-    } else {
-      passMsgV.innerHTML = '<span style="color:#ff3333;">ACCESS DENIED</span>';
+if(passBtnV){
+  passBtnV.addEventListener("click",()=>{
+    const code=passInputV.value.trim().toUpperCase();
+    if(code==="BELIEVE-IN-DAWN"){
+      passMsgV.innerHTML='<span style="color:#00ff88;">[ACCESS GRANTED]</span> Redirecting...';
+      setTimeout(()=>{window.location.href="./memoria.html";},2000);
+    }else{
+      passMsgV.innerHTML='<span style="color:#ff3333;">ACCESS DENIED</span>';
     }
   });
 }
 </script>
-
 </body>
 </html>
