@@ -233,19 +233,13 @@ section, header, footer { animation: fadeIn 1.2s ease-out; }
     <p>現行観測任務。廃都市における逸脱体の記録継続中。</p>
     <p>対象はVOLTAGE、HELIOS-9を含む複数体。観測領域安定化成功。</p>
 
-<p class="security-level" id="securityLevelV">セキュリティレベルⅤ</p>
-
-<div id="passPromptV" class="pass-window hidden">
-  <p>ACCESS CODE REQUIRED</p>
-
-  <div style="display:flex; align-items:center; gap:6px; margin-top:6px;">
-    <input type="password" id="passInputV" placeholder="ENTER CODE">
-    <button id="togglePassV" title="Show / Hide Password">👁</button>
-  </div>
-
-  <button id="passSubmitV" style="margin-top:10px;">VERIFY</button>
-  <p id="passMsgV" class="pass-msg"></p>
-</div>
+    <p class="security-level" id="securityLevelV">セキュリティレベルⅤ</p>
+    <div id="passPromptV" class="pass-window hidden">
+      <p>ACCESS CODE REQUIRED</p>
+      <input type="password" id="passInputV" placeholder="ENTER CODE">
+      <button id="passSubmitV">VERIFY</button>
+      <p id="passMsgV" class="pass-msg"></p>
+    </div>
   </div>
 </div>
 
@@ -320,18 +314,5 @@ if(passBtnV){
   });
 }
 </script>
-<script>
-// === パスワード表示切替 ===
-const togglePassV = document.getElementById("togglePassV");
-if (togglePassV && passInputV) {
-  togglePassV.addEventListener("click", () => {
-    const isHidden = passInputV.getAttribute("type") === "password";
-    passInputV.setAttribute("type", isHidden ? "text" : "password");
-    togglePassV.textContent = isHidden ? "🙈" : "👁";
-  });
-}
-</script>
-
-
 </body>
 </html>
