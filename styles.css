@@ -460,39 +460,3 @@ footer .btn.ghost:hover {
   background: #00f5ff22;
   color: #ffffff;
 }
-/* === Flash + Noise Effect === */
-.flash-overlay {
-  position: fixed;
-  inset: 0;
-  background: white;
-  opacity: 0;
-  pointer-events: none;
-  mix-blend-mode: screen;
-  z-index: 9999;
-  transition: opacity 0.1s ease;
-}
-
-.noise-layer {
-  position: fixed;
-  inset: 0;
-  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR4AWP4//8/AwAI/AL+N8zdcAAAAABJRU5ErkJggg==');
-  opacity: 0;
-  pointer-events: none;
-  mix-blend-mode: lighten;
-  z-index: 9998;
-  animation: noisePulse 0.15s steps(2) infinite;
-}
-
-@keyframes noisePulse {
-  0% {opacity: .2;}
-  50% {opacity: .4;}
-  100% {opacity: .2;}
-}
-
-.flash-active .flash-overlay {
-  opacity: 1;
-}
-
-.flash-active .noise-layer {
-  opacity: 0.5;
-}
