@@ -34,7 +34,7 @@ header p {
   margin-top: 4px;
 }
 
-/* Section */
+/* Sections */
 section {
   width: 90%;
   max-width: 900px;
@@ -52,7 +52,7 @@ h2 {
   margin-top: 10px;
 }
 
-/* ACE LOGS */
+/* Log terminal */
 .logbox {
   background-color: #000;
   color: #00ffcc;
@@ -63,39 +63,65 @@ h2 {
   border-radius: 6px;
   box-shadow: 0 0 8px #00f5ff44;
 }
+.jp {
+  display: block;
+  color: #7deaffaa;
+  font-size: 0.9em;
+  margin-left: 10px;
+  letter-spacing: 0.02em;
+}
 
-/* Typing animation (Observer Notes) */
+/* Typing animation */
 #observerNotes {
+  width: 90%;
+  max-width: 800px;
+  margin: 60px auto;
   white-space: pre-line;
-  overflow: hidden;
-  border-left: 2px solid #00f5ff;
-  padding-left: 8px;
+  border-left: 2px solid #00f5ff88;
+  padding-left: 16px;
   font-size: 1rem;
-  color: #9fe8ff;
-  width: 0;
-  animation: typing 6s steps(60, end) 1s forwards, blink 0.7s step-end infinite;
+  color: #b9ecff;
+  animation: typing 8s steps(80, end) forwards, blink 0.9s step-end infinite;
+  overflow: hidden;
 }
 @keyframes typing {
-  to { width: 100%; }
+  from {width: 0;}
+  to {width: 100%;}
 }
 @keyframes blink {
-  50% { border-color: transparent; }
+  50% {border-color: transparent;}
 }
 
-/* FADE-AI message */
-.ai-message {
+/* AI Message */
+#aiMessage {
   text-align: center;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   color: #00f5ff;
-  text-shadow: 0 0 12px #00f5ffcc;
   opacity: 0;
-  animation: fadeInText 3s ease 7s forwards;
-}
-@keyframes fadeInText {
-  to { opacity: 1; }
+  margin-top: 60px;
+  text-shadow: 0 0 8px #00f5ffcc;
+  transition: opacity 2s ease-in;
 }
 
-/* Flash + Noise */
+/* Return link */
+.return-link {
+  text-align: center;
+  margin: 60px 0 20px;
+}
+.return-link a {
+  color: #00f5ff;
+  text-decoration: none;
+  border: 1px solid #00f5ff66;
+  padding: 8px 16px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+.return-link a:hover {
+  background-color: #00f5ff22;
+  text-shadow: 0 0 6px #00f5ffcc;
+}
+
+/* Flash + noise animation */
 .flash {
   position: fixed;
   inset: 0;
@@ -119,10 +145,15 @@ h2 {
   50% {opacity: .4;}
   100% {opacity: .2;}
 }
-.flash-active .flash { opacity: 1; transition: opacity 0.15s ease-out; }
-.flash-active .noise { opacity: 0.5; }
+.flash-active .flash {
+  opacity: 1;
+  transition: opacity 0.15s ease-out;
+}
+.flash-active .noise {
+  opacity: 0.5;
+}
 
-/* FadeIn */
+/* FadeIn effect */
 @keyframes fadeIn {
   from {opacity: 0; transform: translateY(-10px);}
   to {opacity: 1; transform: translateY(0);}
@@ -135,23 +166,9 @@ footer {
   font-size: 0.8rem;
   color: #00f5ff88;
 }
-footer small { display: block; margin-top: 6px; }
-
-.return-link {
-  text-align: center;
-  margin: 40px 0;
-}
-.return-link a {
-  color: #00f5ff;
-  text-decoration: none;
-  border: 1px solid #00f5ff66;
-  padding: 8px 16px;
-  border-radius: 4px;
-  transition: all 0.2s ease;
-}
-.return-link a:hover {
-  background-color: #00f5ff22;
-  text-shadow: 0 0 6px #00f5ffcc;
+footer small {
+  display: block;
+  margin-top: 6px;
 }
 </style>
 </head>
@@ -166,6 +183,30 @@ footer small { display: block; margin-top: 6px; }
   <p>Access Level: V / Timestamp 00:00:00 JST</p>
 </header>
 
+<section>
+  <h2>■ 概要</h2>
+  <p>本記録は、F.A.D.E.が観測した全逸脱体の最終統合報告であり、<br>
+     各個体の行動・出現条件・収束手段はすべて記録済み。<br>
+     観測任務「Operation MEMORIA」は現在も継続中である。</p>
+</section>
+
+<section>
+  <h2>■ 任務経路</h2>
+  <p>作戦ルート：Command → City → Tunnel → Laboratory → Return</p>
+  <p>すべての観測点において「干渉禁止」プロトコルを遵守。</p>
+</section>
+
+<section>
+  <h2>■ 逸脱体観測総括</h2>
+  <ul>
+    <li>VOLTAGE（D-05） ― 電磁干渉体</li>
+    <li>EMBER（D-06） ― 炎熱揺動体</li>
+    <li>HELIOS-9（D-S09） ― 灼熱現象体</li>
+    <li>その他、未登録体が複数存在する可能性を確認</li>
+  </ul>
+</section>
+
+<!-- ✅ ACE LOGS（英日対訳） -->
 <section>
   <h2>■ ACE LOGS（干渉記録）</h2>
   <div class="logbox">
@@ -186,18 +227,15 @@ footer small { display: block; margin-top: 6px; }
   </div>
 </section>
 
-<section>
-  <h2>■ Observer Notes</h2>
-  <div id="observerNotes">
-記録は途切れ、声は遠のいた。
-だが、観測の灯は消えていない。
+<!-- ✅ Observer Notes（タイピング演出） -->
+<div id="observerNotes">
+記録は途切れ、声は遠のいた。  
+だが、観測の灯は消えていない。  
 ― まだ見ぬ未来のために、私たちは観測を続ける。
-  </div>
-</section>
+</div>
 
-<section class="ai-message">
-  [FADE CORE AI] Thank you, Observer.
-</section>
+<!-- ✅ FADE-AIメッセージ -->
+<div id="aiMessage">[FADE CORE AI] Thank you, Observer.</div>
 
 <div class="return-link">
   <a href="./index.html">← Return to Central Terminal</a>
@@ -209,11 +247,16 @@ footer small { display: block; margin-top: 6px; }
 </footer>
 
 <script>
-  // Flash intro
+// Flash演出
+window.addEventListener('load', () => {
   document.body.classList.add('flash-active');
-  setTimeout(() => {
-    document.body.classList.remove('flash-active');
-  }, 700);
+  setTimeout(() => document.body.classList.remove('flash-active'), 300);
+});
+
+// Observer Notesが打ち終わった後にAIメッセージを表示
+setTimeout(() => {
+  document.getElementById('aiMessage').style.opacity = 1;
+}, 9500);
 </script>
 
 </body>
