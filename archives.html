@@ -241,6 +241,16 @@ section, header, footer { animation: fadeIn 1.2s ease-out; }
     <h3>OPERATION MEMORIA // ACTIVE</h3>
     <p>現行観測任務。廃都市における逸脱体の記録継続中。</p>
     <p>対象はVOLTAGE、HELIOS-9を含む複数体。観測領域安定化成功。</p>
+    
+        <!-- 🔽 セキュリティレベルⅤボタン -->
+    <p class="security-level" id="securityLevelV">セキュリティレベルⅤ</p>
+
+    <!-- 🔽 パスワード入力ウィンドウ -->
+    <div id="passPromptV" class="pass-window hidden">
+      <p>ACCESS CODE REQUIRED</p>
+      <input type="password" id="passInputV" placeholder="ENTER CODE">
+      <button id="passSubmitV">VERIFY</button>
+      <p id="passMsgV" class="pass-msg"></p>
   </div>
 </div>
 
@@ -298,5 +308,34 @@ document.addEventListener("keydown", e => {
   }
 });
 </script>
+  <script>
+  const secBtnV = document.getElementById('securityLevelV');
+  const passWinV = document.getElementById('passPromptV');
+  const passBtnV = document.getElementById('passSubmitV');
+  const passInputV = document.getElementById('passInputV');
+  const passMsgV = document.getElementById('passMsgV');
+
+  // ボタン押下で入力フォーム表示
+  secBtnV.addEventListener('click', () => {
+    passWinV.classList.toggle('hidden');
+    passMsgV.textContent = '';
+    passInputV.value = '';
+  });
+
+  // パスワード検証処理
+  passBtnV.addEventListener('click', () => {
+    const code = passInputV.value.trim().toUpperCase();
+
+    if (code === 'PROJECT-MEMORIA') { // ←ここで任意のパスワード設定可能
+      passMsgV.innerHTML = '<span style="color:#00ff88;">[ACCESS GRANTED]</span> Redirecting...';
+      setTimeout(() => {
+        window.location.href = './memoria.html';
+      }, 2000);
+    } else {
+      passMsgV.innerHTML = '<span style="color:#ff3333;">ACCESS DENIED</span>';
+    }
+  });
+</script>
+
 </body>
 </html>
