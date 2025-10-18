@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>F.A.D.E. // PROJECT MEMORIA</title>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #05080b;
+  color: #c9f3ff;
+  font-family: 'Share Tech Mono', monospace;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+/* Header */
+header {
+  text-align: center;
+  padding: 60px 20px 10px;
+}
+header h1 {
+  font-size: 1.8rem;
+  color: #00f5ff;
+  text-shadow: 0 0 12px #00f5ffcc;
+  letter-spacing: 0.08em;
+  animation: fadeIn 2s ease-in;
+}
+header p {
+  color: #7deaff;
+  font-size: 0.9rem;
+  margin-top: 4px;
+}
+
+/* Sections */
+section {
+  width: 90%;
+  max-width: 900px;
+  margin: 20px auto;
+  background-color: #081017;
+  border: 1px solid #00f5ff22;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 0 10px #00f5ff22;
+}
+h2 {
+  color: #00f5ff;
+  text-shadow: 0 0 6px #00f5ff99;
+  letter-spacing: 0.05em;
+  margin-top: 10px;
+}
+
+/* Log terminal */
+.logbox {
+  background-color: #000;
+  color: #00ffcc;
+  border: 1px solid #00f5ff66;
+  padding: 10px;
+  margin-top: 20px;
+  font-size: 0.9rem;
+  border-radius: 6px;
+  box-shadow: 0 0 8px #00f5ff44;
+}
+
+/* Return link */
+.return-link {
+  text-align: center;
+  margin: 40px 0;
+}
+.return-link a {
+  color: #00f5ff;
+  text-decoration: none;
+  border: 1px solid #00f5ff66;
+  padding: 8px 16px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+.return-link a:hover {
+  background-color: #00f5ff22;
+  text-shadow: 0 0 6px #00f5ffcc;
+}
+
+/* Flash + noise animation */
+.flash {
+  position: fixed;
+  inset: 0;
+  background: white;
+  opacity: 0;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  z-index: 9999;
+}
+.noise {
+  position: fixed;
+  inset: 0;
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR4AWP4//8/AwAI/AL+N8zdcAAAAABJRU5ErkJggg==');
+  opacity: 0;
+  mix-blend-mode: lighten;
+  z-index: 9998;
+  animation: noisePulse 0.15s steps(2) infinite;
+}
+@keyframes noisePulse {
+  0% {opacity: .2;}
+  50% {opacity: .4;}
+  100% {opacity: .2;}
+}
+.flash-active .flash {
+  opacity: 1;
+  transition: opacity 0.15s ease-out;
+}
+.flash-active .noise {
+  opacity: 0.5;
+}
+
+/* FadeIn effect */
+@keyframes fadeIn {
+  from {opacity: 0; transform: translateY(-10px);}
+  to {opacity: 1; transform: translateY(0);}
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 20px;
+  font-size: 0.8rem;
+  color: #00f5ff88;
+}
+footer small {
+  display: block;
+  margin-top: 6px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="flash"></div>
+<div class="noise"></div>
+
+<header>
+  <h1>PROJECT MEMORIA // FINAL ARCHIVE</h1>
+  <p>Access Level: V / Timestamp 00:00:00 JST</p>
+</header>
+
+<section>
+  <h2>■ 概要</h2>
+  <p>本記録は、F.A.D.E.が観測した全逸脱体の最終統合報告であり、<br>
+     各個体の行動・出現条件・収束手段はすべて記録済み。<br>
+     観測任務「Operation MEMORIA」は現在も継続中である。</p>
+</section>
+
+<section>
+  <h2>■ 任務経路</h2>
+  <p>作戦ルート：Command → City → Tunnel → Laboratory → Return</p>
+  <p>すべての観測点において「干渉禁止」プロトコルを遵守</p>
+</section>
+
+<section>
+  <h2>■ 逸脱体観測総括</h2>
+  <ul>
+    <li>VOLTAGE（D-05） ― 電磁干渉体</li>
+    <li>HELIOS-9（D-S09） ― 灼熱現象体</li>
+    <li>その他、未登録体が複数存在する可能性を確認</li>
+  </ul>
+</section>
+
+<section class="logbox">
+  <p>[SYS] Log Merge Complete.</p>
+  <p>[FADE] All observation data archived under PROJECT MEMORIA.</p>
+  <p>[INFO] ACE synchronization protocol remains undefined.</p>
+  <p>[END] Observation continuity is containment.</p>
+</section>
+
+<div class="return-link">
+  <a href="./index.html">← Return to Central Terminal</a>
+</div>
+
+<footer>
+  F.A.D.E. / Field Analysis & Deviation Enforcement<br>
+  <small>PROJECT MEMORIA — Internal Archive Node</small>
+</footer>
+
+<script>
+  // --- Flash + Noise intro ---
+  document.body.classList.add('flash-active');
+  setTimeout(() => {
+    document.body.classList.remove('flash-active');
+  }, 600);
+</script>
+
+</body>
+</html>
