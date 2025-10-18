@@ -276,7 +276,10 @@ setTimeout(() => {
 setTimeout(() => {
   const blackout = document.getElementById('blackout');
   blackout.style.opacity = 1;
-  blackout.style.pointerEvents = 'none'; // ← これでクリック判定を無効にせず維持
+  blackout.style.zIndex = 9999;       // ← 表示時は最前面に
+  setTimeout(() => {
+    blackout.style.zIndex = -1;       // ← 表示後すぐに背面に戻す（クリック可能にする）
+  }, 6000); // ← 4秒後に背面へ
 }, 60000);
 </script>
 
