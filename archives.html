@@ -74,17 +74,14 @@ tr:hover td {
 }
 
 /* Status Colors */
-.status {
-  font-weight: bold;
-  text-transform: uppercase;
-}
+.status { font-weight: bold; text-transform: uppercase; }
 .success { color: #00ff9d; text-shadow: 0 0 6px #00ff9d66; }
 .failure { color: #ff3b3b; text-shadow: 0 0 6px #ff3b3b66; }
 .suspended { color: #ffaa00; text-shadow: 0 0 6px #ffaa0066; }
 .active { color: #66ccff; text-shadow: 0 0 6px #66ccff66; }
 .classified { color: #ff00ff; text-shadow: 0 0 6px #ff00ff66; }
 
-/* === Modal === */
+/* Modal */
 .modal {
   display: none;
   position: fixed;
@@ -95,9 +92,7 @@ tr:hover td {
   justify-content: center;
   z-index: 100;
 }
-.modal.active {
-  display: flex;
-}
+.modal.active { display: flex; }
 .modal-content {
   background-color: #12171c;
   border: 1px solid #ff555533;
@@ -109,23 +104,53 @@ tr:hover td {
   animation: fadeIn 0.5s ease;
   position: relative;
 }
-.modal h3 {
-  color: #ff5c5c;
-  margin-top: 0;
-}
-.modal p {
-  color: #eee;
-  margin: 10px 0;
-}
+.modal h3 { color: #ff5c5c; margin-top: 0; }
+.modal p { color: #eee; margin: 10px 0; }
 .modal-close {
-  position: absolute;
-  right: 12px;
-  top: 8px;
-  color: #ff8888;
-  font-size: 24px;
-  cursor: pointer;
+  position: absolute; right: 12px; top: 8px;
+  color: #ff8888; font-size: 24px; cursor: pointer;
 }
 .modal-close:hover { color: #fff; }
+
+/* Password UI */
+.security-level {
+  margin-top: 16px;
+  color: #00f5ff;
+  text-align: center;
+  cursor: pointer;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+.security-level:hover {
+  color: #ff3355;
+  text-shadow: 0 0 8px #ff3355cc;
+}
+
+.pass-window {
+  margin-top: 12px;
+  text-align: center;
+  background: rgba(255,255,255,0.05);
+  padding: 12px;
+  border-radius: 6px;
+  border: 1px solid #00f5ff44;
+}
+.pass-window.hidden { display: none; }
+.pass-window input {
+  background: #000;
+  color: #00f5ff;
+  border: 1px solid #00f5ff66;
+  padding: 6px;
+  width: 160px;
+  text-align: center;
+}
+.pass-window button {
+  background: transparent;
+  color: #00f5ff;
+  border: 1px solid #00f5ff66;
+  padding: 5px 10px;
+  margin-left: 6px;
+  cursor: pointer;
+}
+.pass-msg { font-size: 0.85rem; margin-top: 8px; }
 
 /* Return link */
 .return-link {
@@ -152,12 +177,9 @@ footer {
   font-size: 0.8rem;
   padding: 20px;
 }
-footer small {
-  display: block;
-  margin-top: 6px;
-}
+footer small { display: block; margin-top: 6px; }
 
-/* Page Fade Animation */
+/* Animation */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(-10px); }
   to { opacity: 1; transform: translateY(0); }
@@ -173,50 +195,19 @@ section, header, footer { animation: fadeIn 1.2s ease-out; }
 </header>
 
 <section>
-  <p>F.A.D.E.による過去の観測・封鎖作戦の記録。<br>
-  一部の情報は機密指定または欠損しています。</p>
+  <p>F.A.D.E.による過去の観測・封鎖作戦の記録。<br>一部の情報は機密指定または欠損しています。</p>
 
   <table id="archiveTable">
-    <tr>
-      <th>コードネーム</th>
-      <th>作戦名</th>
-      <th>状態</th>
-      <th>概要</th>
-    </tr>
-    <tr data-modal="modal-nullfold">
-      <td>PROJECT NULLFOLD</td>
-      <td>Nullfold観測失敗記録</td>
-      <td class="status failure">FAILURE</td>
-      <td>観測途絶により現象拡大を招いた初の例。</td>
-    </tr>
-    <tr data-modal="modal-eidolon">
-      <td>OPERATION EIDOLON</td>
-      <td>Eidolon観測試験</td>
-      <td class="status suspended">SUSPENDED</td>
-      <td>初の集団観測型任務。L-EX共鳴事故により凍結。</td>
-    </tr>
-    <tr data-modal="modal-memoria">
-      <td>OPERATION MEMORIA</td>
-      <td>廃都市観測任務</td>
-      <td class="status active">ACTIVE</td>
-      <td>現行任務。観測および記録を継続中。</td>
-    </tr>
-    <tr data-modal="modal-redwing">
-      <td>PROJECT REDWING</td>
-      <td>異常音波封鎖試験</td>
-      <td class="status success">SUCCESS</td>
-      <td>初のA-ZERO安定干渉成功例。</td>
-    </tr>
-    <tr data-modal="modal-omega">
-      <td>PROJECT OMEGA-GATE</td>
-      <td>無線干渉領域封鎖</td>
-      <td class="status classified">CLASSIFIED</td>
-      <td>情報非公開。ACE関連の記述が確認される。</td>
-    </tr>
+    <tr><th>コードネーム</th><th>作戦名</th><th>状態</th><th>概要</th></tr>
+    <tr data-modal="modal-nullfold"><td>PROJECT NULLFOLD</td><td>Nullfold観測失敗記録</td><td class="status failure">FAILURE</td><td>観測途絶により現象拡大を招いた初の例。</td></tr>
+    <tr data-modal="modal-eidolon"><td>OPERATION EIDOLON</td><td>Eidolon観測試験</td><td class="status suspended">SUSPENDED</td><td>初の集団観測型任務。L-EX共鳴事故により凍結。</td></tr>
+    <tr data-modal="modal-memoria"><td>OPERATION MEMORIA</td><td>廃都市観測任務</td><td class="status active">ACTIVE</td><td>現行任務。観測および記録を継続中。</td></tr>
+    <tr data-modal="modal-redwing"><td>PROJECT REDWING</td><td>異常音波封鎖試験</td><td class="status success">SUCCESS</td><td>初のA-ZERO安定干渉成功例。</td></tr>
+    <tr data-modal="modal-omega"><td>PROJECT OMEGA-GATE</td><td>無線干渉領域封鎖</td><td class="status classified">CLASSIFIED</td><td>情報非公開。ACE関連の記述が確認される。</td></tr>
   </table>
 </section>
 
-<!-- モーダル一覧 -->
+<!-- === モーダル群 === -->
 <div id="modal-nullfold" class="modal">
   <div class="modal-content">
     <span class="modal-close">&times;</span>
@@ -241,16 +232,14 @@ section, header, footer { animation: fadeIn 1.2s ease-out; }
     <h3>OPERATION MEMORIA // ACTIVE</h3>
     <p>現行観測任務。廃都市における逸脱体の記録継続中。</p>
     <p>対象はVOLTAGE、HELIOS-9を含む複数体。観測領域安定化成功。</p>
-    
-        <!-- 🔽 セキュリティレベルⅤボタン -->
-    <p class="security-level" id="securityLevelV">セキュリティレベルⅤ</p>
 
-    <!-- 🔽 パスワード入力ウィンドウ -->
+    <p class="security-level" id="securityLevelV">セキュリティレベルⅤ</p>
     <div id="passPromptV" class="pass-window hidden">
       <p>ACCESS CODE REQUIRED</p>
       <input type="password" id="passInputV" placeholder="ENTER CODE">
       <button id="passSubmitV">VERIFY</button>
       <p id="passMsgV" class="pass-msg"></p>
+    </div>
   </div>
 </div>
 
@@ -282,60 +271,48 @@ section, header, footer { animation: fadeIn 1.2s ease-out; }
 </footer>
 
 <script>
-document.querySelectorAll("tr[data-modal]").forEach(row => {
-  row.addEventListener("click", () => {
-    const id = row.dataset.modal;
-    const modal = document.getElementById(id);
-    modal.classList.add("active");
+/* === 全モーダル制御 === */
+document.querySelectorAll("tr[data-modal]").forEach(row=>{
+  row.addEventListener("click",()=>{
+    const modal=document.getElementById(row.dataset.modal);
+    if(modal) modal.classList.add("active");
   });
 });
-
-document.querySelectorAll(".modal-close").forEach(btn => {
-  btn.addEventListener("click", e => {
-    e.target.closest(".modal").classList.remove("active");
-  });
+document.querySelectorAll(".modal-close").forEach(btn=>{
+  btn.addEventListener("click",e=>e.target.closest(".modal").classList.remove("active"));
+});
+document.querySelectorAll(".modal").forEach(m=>{
+  m.addEventListener("click",e=>{ if(e.target===m) m.classList.remove("active"); });
+});
+document.addEventListener("keydown",e=>{
+  if(e.key==="Escape") document.querySelectorAll(".modal.active").forEach(m=>m.classList.remove("active"));
 });
 
-document.querySelectorAll(".modal").forEach(modal => {
-  modal.addEventListener("click", e => {
-    if (e.target === modal) modal.classList.remove("active");
+/* === セキュリティレベルⅤ 認証処理 === */
+const secBtnV=document.getElementById("securityLevelV");
+const passWinV=document.getElementById("passPromptV");
+const passBtnV=document.getElementById("passSubmitV");
+const passInputV=document.getElementById("passInputV");
+const passMsgV=document.getElementById("passMsgV");
+
+if(secBtnV){
+  secBtnV.addEventListener("click",()=>{
+    passWinV.classList.toggle("hidden");
+    passMsgV.textContent="";
+    passInputV.value="";
   });
-});
-
-document.addEventListener("keydown", e => {
-  if (e.key === "Escape") {
-    document.querySelectorAll(".modal.active").forEach(m => m.classList.remove("active"));
-  }
-});
-</script>
-  <script>
-  const secBtnV = document.getElementById('securityLevelV');
-  const passWinV = document.getElementById('passPromptV');
-  const passBtnV = document.getElementById('passSubmitV');
-  const passInputV = document.getElementById('passInputV');
-  const passMsgV = document.getElementById('passMsgV');
-
-  // ボタン押下で入力フォーム表示
-  secBtnV.addEventListener('click', () => {
-    passWinV.classList.toggle('hidden');
-    passMsgV.textContent = '';
-    passInputV.value = '';
-  });
-
-  // パスワード検証処理
-  passBtnV.addEventListener('click', () => {
-    const code = passInputV.value.trim().toUpperCase();
-
-    if (code === 'PROJECT-MEMORIA') { // ←ここで任意のパスワード設定可能
-      passMsgV.innerHTML = '<span style="color:#00ff88;">[ACCESS GRANTED]</span> Redirecting...';
-      setTimeout(() => {
-        window.location.href = './memoria.html';
-      }, 2000);
-    } else {
-      passMsgV.innerHTML = '<span style="color:#ff3333;">ACCESS DENIED</span>';
+}
+if(passBtnV){
+  passBtnV.addEventListener("click",()=>{
+    const code=passInputV.value.trim().toUpperCase();
+    if(code==="PROJECT-MEMORIA"){
+      passMsgV.innerHTML='<span style="color:#00ff88;">[ACCESS GRANTED]</span> Redirecting...';
+      setTimeout(()=>{window.location.href="./memoria.html";},2000);
+    }else{
+      passMsgV.innerHTML='<span style="color:#ff3333;">ACCESS DENIED</span>';
     }
   });
+}
 </script>
-
 </body>
 </html>
