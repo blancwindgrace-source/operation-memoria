@@ -430,3 +430,19 @@ body.modal-open {
 .hidden {
   display: none;
 }
+footer .btn.ghost {
+  display: inline-block;
+  margin: 8px 6px 0;
+  color: #00f5ff;
+  text-decoration: none;
+  border: 1px solid #00f5ff66;
+  padding: 6px 14px;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  transition: all 0.2s ease;
+}
+
+footer .btn.ghost:hover {
+  background-color: #00f5ff22;
+  text-shadow: 0 0 6px #00f5ffcc;
+}
