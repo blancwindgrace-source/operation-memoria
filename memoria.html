@@ -342,15 +342,15 @@ window.addEventListener('load', () => {
   const countdown = document.getElementById('countdown');
   const timerSpan = document.getElementById('timer');
 
-  let timeLeft = 10; // 秒数設定
+  let timeLeft = 40; // 秒数設定
   countdown.style.opacity = 1;
 
   const interval = setInterval(() => {
     timeLeft--;
     timerSpan.textContent = timeLeft;
 
-    // 残り3秒以下で赤く点滅
-    if (timeLeft <= 3) countdown.classList.add('warning');
+    // 残り5秒以下で赤く点滅
+    if (timeLeft <= 5) countdown.classList.add('warning');
 
     // 0秒でフェードアウト
     if (timeLeft <= 0) {
@@ -364,7 +364,7 @@ window.addEventListener('load', () => {
   
 <!-- Countdown Timer -->
 <div id="countdown" class="countdown">
-  SYSTEM SHUTDOWN IN: <span id="timer">10</span>s
+  システム遮断まで: <span id="timer">40</span>s
 </div>
 
 </body>
