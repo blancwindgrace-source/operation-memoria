@@ -112,6 +112,16 @@ tr:hover td {
 }
 .modal-close:hover { color: #fff; }
 
+/* After Report */
+.after-report {
+  color: #ffaaaa;
+  font-size: 0.9rem;
+  margin-top: 1rem;
+  line-height: 1.5;
+  border-left: 2px solid #ff5c5c55;
+  padding-left: 10px;
+}
+
 /* Password UI */
 .security-level {
   margin-top: 16px;
@@ -214,15 +224,27 @@ section, header, footer { animation: fadeIn 1.2s ease-out; }
     <h3>PROJECT NULLFOLD // FAILURE LOG</h3>
     <p>観測途絶による現象拡大を確認。第3観測隊が消息を絶つ。</p>
     <p>本件以降、F.A.D.E.は「観測の継続こそが封鎖手段」と定義。</p>
+    <hr>
+    <p class="after-report">
+      [POST-REVIEW 03.12] 全記録を中枢データベースに統合完了。  
+      現象残渣はA-ZERO層で隔離。以後、類似事象は発生せず。  
+      — 記録保持優先プロトコルを常時適用。
+    </p>
   </div>
 </div>
 
 <div id="modal-eidolon" class="modal">
   <div class="modal-content">
     <span class="modal-close">&times;</span>
-    <h3>OPERATION EIDOLON // SUSPENDED</h3>
-    <p>L-EX共鳴事故により観測員5名が意識融合。以後凍結。</p>
-    <p>事故の詳細は非公開。A-ZEROプロトコル試験に転用。</p>
+    <h3>OPERATION EIDOLON // TERMINATION NOTE</h3>
+    <p>L-EX共鳴異常により作戦中断。観測記録の一部はA-ZERO層へ封印。</p>
+    <p>幻像領域での観測反応がヒト意識干渉を示唆。</p>
+    <hr>
+    <p class="after-report">
+      [POST-REVIEW 07.29] 被験領域は完全消失。  
+      記録媒体は磁気汚染により破損。  
+      — 意識共鳴現象について解析継続中。
+    </p>
   </div>
 </div>
 
@@ -232,19 +254,23 @@ section, header, footer { animation: fadeIn 1.2s ease-out; }
     <h3>OPERATION MEMORIA // ACTIVE</h3>
     <p>現行観測任務。廃都市における逸脱体の記録継続中。</p>
     <p>対象はVOLTAGE、HELIOS-9を含む複数体。新人観測員を連れた現地調査。</p>
+    <hr>
+    <p class="after-report">
+      [POST-REVIEW 05.04] 全観測記録を統合データノードに移送。  
+      L-EXおよびA-ZERO干渉値は基準範囲内。  
+      — 継続観測任務「Operation MEMORIA」へ移行。
+    </p>
 
     <p class="security-level" id="securityLevelV">セキュリティレベルⅤ</p>
-<div id="passPromptV" class="pass-window hidden">
-  <p>ACCESS CODE REQUIRED</p>
-
-  <div style="display:flex; justify-content:center; align-items:center; gap:6px;">
-    <input type="password" id="passInputV" placeholder="ENTER CODE">
-    <button id="togglePassV" title="Show / Hide Password">👁</button>
-  </div>
-
-  <button id="passSubmitV" style="margin-top:8px;">VERIFY</button>
-  <p id="passMsgV" class="pass-msg"></p>
-</div>
+    <div id="passPromptV" class="pass-window hidden">
+      <p>ACCESS CODE REQUIRED</p>
+      <div style="display:flex; justify-content:center; align-items:center; gap:6px;">
+        <input type="password" id="passInputV" placeholder="ENTER CODE">
+        <button id="togglePassV" title="Show / Hide Password">👁</button>
+      </div>
+      <button id="passSubmitV" style="margin-top:8px;">VERIFY</button>
+      <p id="passMsgV" class="pass-msg"></p>
+    </div>
   </div>
 </div>
 
@@ -254,6 +280,12 @@ section, header, footer { animation: fadeIn 1.2s ease-out; }
     <h3>PROJECT REDWING // SUCCESS</h3>
     <p>初のA-ZERO安定干渉成功。音波異常領域を24時間封鎖。</p>
     <p>現象消失後、周辺にACE反応を一時検出。</p>
+    <hr>
+    <p class="after-report">
+      [POST-REVIEW 02.18] 干渉波記録をA-ZERO研究班に転送。  
+      試験成功をもとに、次段階の「FADE PRIME」構築を提案。  
+      — 安定観測波形成の基礎資料として保管。
+    </p>
   </div>
 </div>
 
@@ -263,6 +295,11 @@ section, header, footer { animation: fadeIn 1.2s ease-out; }
     <h3>PROJECT OMEGA-GATE // CLASSIFIED</h3>
     <p>データ欠損。記録破損率98%。</p>
     <p>残留ログ：「───ACE-01、応答を……」</p>
+    <hr>
+    <p class="after-report">
+      [POST-REVIEW 10.11] 復号試行失敗。記録断片のみにACE痕跡を確認。  
+      — 中枢AI「CORE UNIT」による再解析を待機中。
+    </p>
   </div>
 </div>
 
@@ -318,9 +355,8 @@ if(passBtnV){
     }
   });
 }
-</script>
-  <script>
-// === パスワード表示切替 ===
+
+/* === パスワード表示切替 === */
 const togglePassV = document.getElementById("togglePassV");
 if (togglePassV && passInputV) {
   togglePassV.addEventListener("click", () => {
