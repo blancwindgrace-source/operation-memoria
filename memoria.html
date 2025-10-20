@@ -286,6 +286,11 @@ window.addEventListener('load', () => {
       setTimeout(() => {
         farewell.style.opacity = 1;
       }, 6000);
+      
+            // === 終幕後 10秒でトップへ戻る ===
+      setTimeout(() => {
+        window.location.href = "./index.html";
+      }, 16000); // ← 暗転→6秒→＋10秒＝合計16秒後に遷移
     }
   }, 1000);
 });
