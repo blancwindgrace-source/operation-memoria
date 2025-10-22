@@ -48,6 +48,37 @@
           View Fragment →
         </a>
       </article>
+
+      <!-- ENTITY: ECHO-NOIR -->
+<article class="entity">
+  <h3>D-17 “???”</h3>
+  <p class="tag">???</p>
+  <p>現在調査中</p>
+  <a href="#" class="more open-modal" data-target="modal-echo" aria-label="More about ECHO-NOIR">
+    View Fragment →
+  </a>
+</article>
+
+<!-- ENTITY: CRADLE -->
+<article class="entity">
+  <h3>D-42 “???”</h3>
+  <p class="tag">???</p>
+  <p>現在調査中</p>
+  <a href="#" class="more open-modal" data-target="modal-cradle" aria-label="More about CRADLE">
+    View Fragment →
+  </a>
+</article>
+
+<!-- ENTITY: BLANK -->
+<article class="entity">
+  <h3>D-99 “???”</h3>
+  <p class="tag">???</p>
+  <p>現在調査中</p>
+  <a href="#" class="more open-modal" data-target="modal-blank" aria-label="More about BLANK">
+    View Fragment →
+  </a>
+</article>
+
     </div>
     <p class="note">※ 上記は観測断片。詳細報告は各コード認証後に開示。</p>
   </section>
@@ -101,6 +132,73 @@
       </div>
       <button id="passSubmitH9">VERIFY</button>
       <p id="passMsgH9" class="pass-msg"></p>
+    </div>
+  </div>
+</section>
+
+  <!-- === ECHO-NOIR MODAL === -->
+<section id="modal-echo" class="modal" aria-label="ECHO Log">
+  <div class="modal-dialog">
+    <button class="modal-close" aria-label="Close">&times;</button>
+    <h3>Observation Log: ???</h3>
+    <p class="mono">Timestamp 04:31:22 JST</p>
+    <p>情報無し</p>
+    <p></p>
+
+    <!-- 🔽 パスワード入力 -->
+    <p class="security-level" id="securityLevelEN">セキュリティレベルⅣ</p>
+    <div id="passPromptEN" class="pass-window hidden">
+      <p>ACCESS CODE REQUIRED</p>
+      <div class="pass-input-wrapper">
+        <input type="password" id="passInputEN" placeholder="ENTER CODE">
+        <button id="togglePassEN" aria-label="Show password">👁</button>
+      </div>
+      <button id="passSubmitEN">VERIFY</button>
+      <p id="passMsgEN" class="pass-msg"></p>
+    </div>
+  </div>
+</section>
+
+<!-- === CRADLE MODAL === -->
+<section id="modal-cradle" class="modal" aria-label="CRADLE Log">
+  <div class="modal-dialog">
+    <button class="modal-close" aria-label="Close">&times;</button>
+    <h3>Observation Log: ???</h3>
+    <p class="mono">Timestamp 08:14:59 JST</p>
+    <p>情報無し</p>
+    <p></p>
+
+    <p class="security-level" id="securityLevelC">セキュリティレベルⅢ</p>
+    <div id="passPromptC" class="pass-window hidden">
+      <p>ACCESS CODE REQUIRED</p>
+      <div class="pass-input-wrapper">
+        <input type="password" id="passInputC" placeholder="ENTER CODE">
+        <button id="togglePassC" aria-label="Show password">👁</button>
+      </div>
+      <button id="passSubmitC">VERIFY</button>
+      <p id="passMsgC" class="pass-msg"></p>
+    </div>
+  </div>
+</section>
+
+<!-- === BLANK MODAL === -->
+<section id="modal-blank" class="modal" aria-label="BLANK Log">
+  <div class="modal-dialog">
+    <button class="modal-close" aria-label="Close">&times;</button>
+    <h3>Observation Log: ???</h3>
+    <p class="mono">Timestamp 00:00:00 JST</p>
+    <p>情報無し</p>
+    <p></p>
+
+    <p class="security-level" id="securityLevelB">セキュリティレベルⅤ</p>
+    <div id="passPromptB" class="pass-window hidden">
+      <p>ACCESS CODE REQUIRED</p>
+      <div class="pass-input-wrapper">
+        <input type="password" id="passInputB" placeholder="ENTER CODE">
+        <button id="togglePassB" aria-label="Show password">👁</button>
+      </div>
+      <button id="passSubmitB">VERIFY</button>
+      <p id="passMsgB" class="pass-msg"></p>
     </div>
   </div>
 </section>
@@ -218,6 +316,50 @@ if (passBtnH9) {
   });
 }
 </script>
+<script>
+// === ECHO-NOIR ===
+const secEN = document.getElementById('securityLevelEN');
+const passWinEN = document.getElementById('passPromptEN');
+const btnEN = document.getElementById('passSubmitEN');
+const inpEN = document.getElementById('passInputEN');
+const msgEN = document.getElementById('passMsgEN');
+const toggleEN = document.getElementById('togglePassEN');
 
+if (secEN) secEN.addEventListener('click',()=>{passWinEN.classList.toggle('hidden'); msgEN.textContent=''; inpEN.value='';});
+if (toggleEN) toggleEN.addEventListener('click',()=>{const t=inpEN.type==='password'?'text':'password'; inpEN.type=t; toggleEN.textContent=t==='password'?'👁':'🙈';});
+if (btnEN) btnEN.addEventListener('click',()=>{const c=inpEN.value.trim().toUpperCase();
+  if(c==='INF-17-ECHO'){msgEN.innerHTML='<span style="color:#00f5ff;">[ACCESS GRANTED]</span> Redirecting...'; setTimeout(()=>{window.location.href='./echo.html';},2000);}
+  else{msgEN.style.color='#ff4444'; msgEN.textContent='ACCESS DENIED';}});
+
+// === CRADLE ===
+const secC = document.getElementById('securityLevelC');
+const passWinC = document.getElementById('passPromptC');
+const btnC = document.getElementById('passSubmitC');
+const inpC = document.getElementById('passInputC');
+const msgC = document.getElementById('passMsgC');
+const toggleC = document.getElementById('togglePassC');
+
+if (secC) secC.addEventListener('click',()=>{passWinC.classList.toggle('hidden'); msgC.textContent=''; inpC.value='';});
+if (toggleC) toggleC.addEventListener('click',()=>{const t=inpC.type==='password'?'text':'password'; inpC.type=t; toggleC.textContent=t==='password'?'👁':'🙈';});
+if (btnC) btnC.addEventListener('click',()=>{const c=inpC.value.trim().toUpperCase();
+  if(c==='BIO-42-CRADLE'){msgC.innerHTML='<span style="color:#00ff88;">[ACCESS GRANTED]</span> Initiating Sequence...'; setTimeout(()=>{window.location.href='./cradle.html';},2000);}
+  else{msgC.style.color='#ff4444'; msgC.textContent='ACCESS DENIED';}});
+
+// === BLANK ===
+const secB = document.getElementById('securityLevelB');
+const passWinB = document.getElementById('passPromptB');
+const btnB = document.getElementById('passSubmitB');
+const inpB = document.getElementById('passInputB');
+const msgB = document.getElementById('passMsgB');
+const toggleB = document.getElementById('togglePassB');
+
+if (secB) secB.addEventListener('click',()=>{passWinB.classList.toggle('hidden'); msgB.textContent=''; inpB.value='';});
+if (toggleB) toggleB.addEventListener('click',()=>{const t=inpB.type==='password'?'text':'password'; inpB.type=t; toggleB.textContent=t==='password'?'👁':'🙈';});
+if (btnB) btnB.addEventListener('click',()=>{const c=inpB.value.trim().toUpperCase();
+  if(c==='NULL-99-BLANK'){msgB.innerHTML='<span style="color:#ff77ff;">[ACCESS GRANTED]</span> Redirecting...'; setTimeout(()=>{window.location.href='./blank.html';},2000);}
+  else{msgB.style.color='#ff4444'; msgB.textContent='ACCESS DENIED';}});
+</script>
+
+  
 </body>
 </html>
