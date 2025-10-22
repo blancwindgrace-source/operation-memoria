@@ -500,3 +500,7 @@ footer .btn.ghost:hover {
 body {
   padding-top: 60px; /* バーの高さ分余白を確保 */
 }
+
+body, .top-nav, .top-nav a {
+  font-family: 'Share Tech Mono', monospace;
+}
