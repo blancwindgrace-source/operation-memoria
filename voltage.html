@@ -161,6 +161,46 @@ footer small {
   display: block;
   margin-top: 6px;
 }
+  /* === F.A.D.E. TOP NAVIGATION === */
+.top-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(5, 10, 15, 0.75);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(0, 245, 255, 0.1);
+  z-index: 9999;
+  padding: 12px 0;
+}
+
+.top-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+}
+
+.top-nav a {
+  color: #c9f3ff;
+  text-decoration: none;
+  font-weight: bold;
+  letter-spacing: 0.05em;
+  transition: all 0.25s ease;
+}
+
+.top-nav a:hover {
+  color: #00f5ff;
+  text-shadow: 0 0 8px #00f5ffcc;
+}
+
+/* === 本文がナビの下に隠れないように === */
+body {
+  padding-top: 60px; /* バーの高さ分余白を確保 */
+}
+
 </style>
 </head>
 
