@@ -83,6 +83,15 @@
   </a>
 </article>
 
+      <article class="entity">
+  <h3>D-XXX “MEMORIA”</h3>
+  <p class="tag">Post-Memorial Entity</p>
+  <p>情報改竄の可能性あり</p>
+  <a href="#" class="more open-modal" data-target="modal-memorialis" aria-label="More about MEMORIALIS">
+    View Fragment →
+  </a>
+</article>
+
     </div>
     <p class="note">※ 上記は観測断片。詳細報告は各コード認証後に開示。</p>
   </section>
@@ -206,6 +215,28 @@
     </div>
   </div>
 </section>
+
+  <section id="modal-memorialis" class="modal" aria-label="MEMORIALIS Log">
+  <div class="modal-dialog">
+    <button class="modal-close" aria-label="Close">&times;</button>
+    <h3>Observation Log: MEMORIA</h3>
+    <p class="mono">Timestamp 99:99:99 JST</p>
+    <p></p>
+    <p></p>
+
+    <p class="security-level" id="securityLevelM11">アクセス禁止</p>
+    <div id="passPromptM11" class="pass-window hidden">
+      <p>ACCESS CODE REQUIRED</p>
+      <div class="pass-input-wrapper">
+        <input type="password" id="passInputM11" placeholder="ENTER CODE">
+        <button id="togglePassM11" aria-label="Show password">👁</button>
+      </div>
+      <button id="passSubmitM11">VERIFY</button>
+      <p id="passMsgM11" class="pass-msg"></p>
+    </div>
+  </div>
+</section>
+
 
 <script>
 /* === モーダル制御 === */
@@ -362,6 +393,26 @@ if (toggleB) toggleB.addEventListener('click',()=>{const t=inpB.type==='password
 if (btnB) btnB.addEventListener('click',()=>{const c=inpB.value.trim().toUpperCase();
   if(c==='NULL-99-BLANK'){msgB.innerHTML='<span style="color:#ff77ff;">[ACCESS GRANTED]</span> Redirecting...'; setTimeout(()=>{window.location.href='./blank.html';},2000);}
   else{msgB.style.color='#ff4444'; msgB.textContent='ACCESS DENIED';}});
+
+  // === MEMORIA ===
+  const secM11 = document.getElementById('securityLevelM11');
+const winM11 = document.getElementById('passPromptM11');
+const inpM11 = document.getElementById('passInputM11');
+const btnM11 = document.getElementById('passSubmitM11');
+const msgM11 = document.getElementById('passMsgM11');
+const toggleM11 = document.getElementById('togglePassM11');
+
+if(secM11) secM11.addEventListener('click',()=>{winM11.classList.toggle('hidden'); msgM11.textContent=''; inpM11.value='';});
+if(toggleM11) toggleM11.addEventListener('click',()=>{const t=inpM11.type==='password'?'text':'password'; inpM11.type=t; toggleM11.textContent=t==='password'?'👁':'🙈';});
+if(btnM11) btnM11.addEventListener('click',()=>{
+  const c=inpM11.value.trim().toUpperCase();
+  if(c==='LAST-RECORD'){msgM11.innerHTML='<span style="color:#00f5ff;">[ACCESS GRANTED]</span> Loading Record...';
+    setTimeout(()=>{window.location.href='./memorialis.html';},2000);
+  }else{
+    msgM11.style.color='#ff4444'; msgM11.textContent='ACCESS DENIED';
+  }
+});
+
 </script>
 
   
