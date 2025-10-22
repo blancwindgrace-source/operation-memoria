@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>F.A.D.E. // Observed Entities Archive</title>
+  <meta name="description" content="F.A.D.E.観測対象記録アーカイブ">
+  <meta name="theme-color" content="#0b0f12">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+
+<body>
+<!-- ▼ F.A.D.E. TOP NAVIGATION BAR ▼ -->
+<nav class="top-nav">
+  <ul>
+    <li><a href="./index.html">HOME</a></li>
+    <li><a href="./glossary.html">用語集</a></li>
+    <li><a href="./archives.html">記録アーカイブ</a></li>
+    <li><a href="./entities.html">逸脱体</a></li>
+  </ul>
+</nav>
+
+<header class="site-header" aria-label="FADE header">
+  <div class="logo">F.A.D.E.</div>
+  <div class="badge" aria-hidden="true">INTERNAL NODE // ENTITY OBSERVATION</div>
+</header>
+
+<main>
+  <section class="panel" id="entities" aria-labelledby="entities-title">
+    <h2 id="entities-title">OBSERVED ENTITIES</h2>
+    <div class="grid two">
+      <!-- ENTITY: VOLTAGE -->
+      <article class="entity">
+        <h3>D-05 “VOLTAGE”</h3>
+        <p class="tag">Electro-Reactive Entity</p>
+        <p>元人間由来の電磁干渉体。送電網事故後、電位として残留。</p>
+        <a href="#" class="more open-modal" data-target="modal-voltage" aria-label="More about VOLTAGE">
+          View Fragment →
+        </a>
+      </article>
+
+      <!-- ENTITY: HELIOS-9 -->
+      <article class="entity">
+        <h3>D-S09 “HELIOS-9”</h3>
+        <p class="tag">Thermal-Humanoid Deviation</p>
+        <p>太陽炉事故の被災者。意識が高温プラズマに同化した灼熱体。</p>
+        <a href="#" class="more open-modal" data-target="modal-helios9" aria-label="More about HELIOS-9">
+          View Fragment →
+        </a>
+      </article>
+    </div>
+    <p class="note">※ 上記は観測断片。詳細報告は各コード認証後に開示。</p>
+  </section>
+</main>
+
+<footer class="site-footer" aria-label="footer">
+  <small>F.A.D.E. Central Division — Entity Observation Database</small><br>
+  <a href="./glossary.html" class="btn ghost">Terminology Archive</a>
+  <a href="./archives.html" class="btn ghost">Project Archives</a>
+</footer>
+
+<!-- === VOLTAGE MODAL === -->
+<section id="modal-voltage" class="modal" aria-label="VOLTAGE Log">
+  <div class="modal-dialog">
+    <button class="modal-close" aria-label="Close">&times;</button>
+    <h3>Observation Log: VOLTAGE</h3>
+    <p class="mono">Timestamp 22:17:48 JST</p>
+    <p>送電網への再接続を検出。EMP反応が上昇。観測継続により電位は安定。</p>
+    <p>観測員の端末に向けて攻撃性を示すため、機器の段階的遮断を実施。</p>
+
+    <!-- 🔽 セキュリティ＆パスワード入力 -->
+    <p class="security-level" id="securityLevelIV">セキュリティレベルⅣ</p>
+    <div id="passPrompt" class="pass-window hidden">
+      <p>ACCESS CODE REQUIRED</p>
+      <div class="pass-input-wrapper">
+        <input type="password" id="passInput" placeholder="ENTER CODE">
+        <button id="togglePass" aria-label="Show password">👁</button>
+      </div>
+      <button id="passSubmit">VERIFY</button>
+      <p id="passMsg" class="pass-msg"></p>
+    </div>
+  </div>
+</section>
+
+<!-- === HELIOS-9 MODAL === -->
+<section id="modal-helios9" class="modal" aria-label="HELIOS Log">
+  <div class="modal-dialog">
+    <button class="modal-close" aria-label="Close">&times;</button>
+    <h3>Observation Log: HELIOS-9</h3>
+    <p class="mono">Timestamp 03:22:05 JST</p>
+    <p>臨界域周辺で温度急上昇を確認。A-ZERO干渉波で位相を拡散。観測は継続。</p>
+    <p>対象は救済の語彙を用いるが実質は焼却行為。対話は不可。</p>
+
+    <!-- 🔽 セキュリティ＆パスワード入力 -->
+    <p class="security-level" id="securityLevelH9">セキュリティレベルⅣ</p>
+    <div id="passPromptH9" class="pass-window hidden">
+      <p>ACCESS CODE REQUIRED</p>
+      <div class="pass-input-wrapper">
+        <input type="password" id="passInputH9" placeholder="ENTER CODE">
+        <button id="togglePassH9" aria-label="Show password">👁</button>
+      </div>
+      <button id="passSubmitH9">VERIFY</button>
+      <p id="passMsgH9" class="pass-msg"></p>
+    </div>
+  </div>
+</section>
+
+<script>
+/* === モーダル制御 === */
+const modalTriggers = document.querySelectorAll('.open-modal');
+const modals = document.querySelectorAll('.modal');
+const body = document.body;
+let lastScrollY = 0;
+
+modalTriggers.forEach(trigger => {
+  trigger.addEventListener('click', e => {
+    e.preventDefault();
+    const targetId = trigger.dataset.target;
+    const modal = document.getElementById(targetId);
+    if (modal) {
+      lastScrollY = window.scrollY;
+      modal.classList.add('active');
+      body.classList.add('modal-open');
+    }
+  });
+});
+
+modals.forEach(modal => {
+  const closeBtn = modal.querySelector('.modal-close');
+  const closeModal = () => {
+    modal.classList.remove('active');
+    body.classList.remove('modal-open');
+    setTimeout(() => window.scrollTo(0, lastScrollY), 10);
+  };
+  closeBtn.addEventListener('click', e => { e.preventDefault(); closeModal(); });
+  modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && modal.classList.contains('active')) closeModal();
+  });
+});
+
+/* === VOLTAGE 認証処理 === */
+const securityBtn = document.getElementById('securityLevelIV');
+const passPrompt = document.getElementById('passPrompt');
+const passInput = document.getElementById('passInput');
+const passSubmit = document.getElementById('passSubmit');
+const passMsg = document.getElementById('passMsg');
+if (securityBtn) {
+  securityBtn.addEventListener('click', () => {
+    passPrompt.classList.toggle('hidden');
+    passMsg.textContent = '';
+    passInput.value = '';
+  });
+}
+if (passSubmit) {
+  passSubmit.addEventListener('click', e => {
+    e.preventDefault();
+    const entered = passInput.value.trim();
+    const correctCode = 'ARC-06-VOLTAGE';
+    if (entered === correctCode) {
+      passMsg.style.color = '#00e7ff';
+      passMsg.textContent = 'ACCESS GRANTED';
+      setTimeout(() => {
+        window.location.href = 'voltage.html';
+      }, 1500);
+    } else {
+      passMsg.style.color = '#ef4444';
+      passMsg.textContent = 'ACCESS DENIED';
+    }
+  });
+}
+const togglePass = document.getElementById('togglePass');
+if (togglePass && passInput) {
+  togglePass.addEventListener('click', () => {
+    const type = passInput.getAttribute('type') === 'password' ? 'text' : 'password';
+    passInput.setAttribute('type', type);
+    togglePass.textContent = type === 'password' ? '👁' : '🙈';
+  });
+}
+
+/* === HELIOS-9 認証処理 === */
+const secBtnH9 = document.getElementById('securityLevelH9');
+const passWinH9 = document.getElementById('passPromptH9');
+const passBtnH9 = document.getElementById('passSubmitH9');
+const passInputH9 = document.getElementById('passInputH9');
+const passMsgH9 = document.getElementById('passMsgH9');
+const togglePassH9 = document.getElementById('togglePassH9');
+
+if (secBtnH9) {
+  secBtnH9.addEventListener('click', () => {
+    passWinH9.classList.toggle('hidden');
+    passMsgH9.textContent = '';
+    passInputH9.value = '';
+  });
+}
+if (togglePassH9 && passInputH9) {
+  togglePassH9.addEventListener('click', () => {
+    const type = passInputH9.getAttribute('type') === 'password' ? 'text' : 'password';
+    passInputH9.setAttribute('type', type);
+    togglePassH9.textContent = type === 'password' ? '👁' : '🙈';
+  });
+}
+if (passBtnH9) {
+  passBtnH9.addEventListener('click', () => {
+    const code = passInputH9.value.trim().toUpperCase();
+    if (code === 'SOL-09-HELIOS') {
+      passMsgH9.innerHTML = '<span style="color:#ff6600;">[ALERT]</span> Core Temperature Rising...';
+      setTimeout(() => {
+        passMsgH9.innerHTML = '<span style="color:#ffaa00;">[SYSTEM]</span> Emergency Containment...';
+      }, 900);
+      setTimeout(() => {
+        window.location.href = './helios.html';
+      }, 2500);
+    } else {
+      passMsgH9.textContent = 'ACCESS DENIED';
+      passMsgH9.style.color = '#ff4444';
+    }
+  });
+}
+</script>
+
+</body>
+</html>
