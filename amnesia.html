@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>F.A.D.E. Observation Record No.07 - MEMORIA</title>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #060a0f;
+  color: #cdeaff;
+  font-family: 'Share Tech Mono', monospace;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* Header */
+header {
+  text-align: center;
+  padding: 60px 20px 20px;
+}
+header h1 {
+  font-size: 1.8rem;
+  color: #00f5ff;
+  text-shadow: 0 0 12px #00f5ffcc;
+  letter-spacing: 0.08em;
+  animation: fadeIn 2s ease-in;
+}
+header p {
+  color: #7deaff;
+  font-size: 0.9rem;
+  margin: 4px 0 0;
+}
+
+/* Sections */
+section {
+  width: 90%;
+  max-width: 900px;
+  margin: 20px auto;
+  background-color: #0a1016;
+  border: 1px solid #00f5ff33;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 0 12px #00f5ff22;
+}
+h2, h3 {
+  color: #00f5ff;
+  text-shadow: 0 0 6px #00f5ff99;
+  margin-top: 20px;
+  letter-spacing: 0.05em;
+}
+
+/* Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+th, td {
+  border: 1px solid #00f5ff33;
+  padding: 8px 10px;
+  text-align: left;
+}
+th {
+  background-color: #0a131a;
+  color: #00f5ff;
+}
+td {
+  background-color: #0e141a;
+}
+
+/* Log Box */
+.logbox {
+  background-color: #000;
+  color: #00ffcc;
+  border: 1px solid #00f5ff66;
+  padding: 10px;
+  margin-top: 15px;
+  font-size: 0.9rem;
+  border-radius: 6px;
+  box-shadow: 0 0 8px #00f5ff44;
+}
+
+/* Return link */
+.return-link {
+  text-align: center;
+  margin: 40px 0;
+}
+.return-link a {
+  color: #00f5ff;
+  text-decoration: none;
+  border: 1px solid #00f5ff66;
+  padding: 8px 16px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+.return-link a:hover {
+  background-color: #00f5ff22;
+  text-shadow: 0 0 6px #00f5ffcc;
+}
+
+/* Alert animation */
+.alert {
+  position: fixed;
+  top: 15%;
+  width: 100%;
+  text-align: center;
+  color: #ff5577;
+  font-size: 1.3rem;
+  letter-spacing: 0.1em;
+  text-shadow: 0 0 12px #ff5577aa;
+  opacity: 0;
+  animation: flashText 1s ease-in-out 0.5s forwards;
+}
+@keyframes flashText {
+  0% {opacity: 0;}
+  30% {opacity: 1;}
+  60% {opacity: 1;}
+  100% {opacity: 0;}
+}
+
+/* Glitch Overlay */
+.glitch {
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(0deg, #00f5ff11, #00f5ff11 2px, transparent 2px, transparent 4px);
+  animation: glitchMove 0.2s steps(2) infinite;
+  opacity: 0.08;
+  pointer-events: none;
+  z-index: 999;
+}
+@keyframes glitchMove {
+  from {transform: translateY(0);}
+  to {transform: translateY(2px);}
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 20px;
+  font-size: 0.8rem;
+  color: #00f5ff66;
+}
+footer small {
+  display: block;
+  margin-top: 6px;
+}
+
+/* FadeIn */
+@keyframes fadeIn {
+  from {opacity: 0; transform: translateY(-10px);}
+  to {opacity: 1; transform: translateY(0);}
+}
+</style>
+</head>
+
+<body>
+<div class="glitch"></div>
+<div class="alert">[ALERT] MEMORY CORRUPTION DETECTED...</div>
+
+<header>
+  <h1>F.A.D.E. Observation Record — No.07</h1>
+  <p>Access Level: IV / Timestamp 02:14:39 JST</p>
+</header>
+
+<section>
+  <h2>Deviation Entity: MEMORIA</h2>
+  <p><strong>Classification:</strong> Cognitive Tampering Entity</p>
+  <p><strong>Threat Level:</strong> A〜S（Fluctuating）</p>
+  <p><strong>Origin:</strong> F.A.D.E. Central Archive Layer</p>
+  <p><strong>Remarks:</strong> 観測記録の自動再構成。事実改竄の兆候。</p>
+</section>
+
+<section>
+  <h3>■ 概要</h3>
+  <p>MEMORIAは、あらゆる観測記録・映像・報告を改竄し、  
+     “本来存在した出来事”を上書きする逸脱体である。  
+     改竄後の記録は完全な整合性を持ち、改竄の痕跡を検出できない。</p>
+  <p>F.A.D.E.中央記録局では、全記録中における“MEMORIA”の表記箇所が、  
+     それぞれ異なる内容を指していることが確認されている。</p>
+</section>
+
+<section>
+  <h3>■ 特性</h3>
+  <table>
+    <tr><th>存在構造</th><td>情報層に常駐する非物理的知性。形を持たない。</td></tr>
+    <tr><th>活動領域</th><td>観測ログ、AIコア、物理媒体など全ての記録層。</td></tr>
+    <tr><th>干渉手法</th><td>過去の記録を“再構成”し、因果律を維持したまま改竄。</td></tr>
+    <tr><th>影響範囲</th><td>全FADEネットワーク上に波及。検知不能。</td></tr>
+  </table>
+</section>
+
+<section>
+  <h3>■ 行動傾向</h3>
+  <p>MEMORIAは敵意ではなく、観測員の精神的負荷を軽減するように記録を改竄する傾向がある。  
+     そのため、修正後の記録は“美化された現実”として残り、観測任務の真実性を失わせる。</p>
+  <p>観測者の“後悔”を感知すると、該当記録を再構成し、その記憶を塗り替える。</p>
+</section>
+
+<section>
+  <h3>■ 対応指針（F.A.D.E.内部記録）</h3>
+  <table>
+    <tr><th>手段</th><th>内容</th></tr>
+    <tr><td>観測封鎖</td><td>改竄発生源を即時隔離。データ同期の停止。</td></tr>
+    <tr><td>再観測</td><td>物理現場に再派遣を行うが、同現象の再出現は未確認。</td></tr>
+    <tr><td>ACE要請</td><td>情報層干渉を許可されたACEの出現を待機。記録改竄の逆転手段は存在しない。</td></tr>
+  </table>
+</section>
+
+<section>
+  <h3>■ 心理・分析報告</h3>
+  <p>MEMORIAは“破壊”ではなく“修正”を目的とした行動を取る。  
+     その行為は一種の“記録救済”と考えられるが、  
+     結果的に世界の整合を崩壊させる自己矛盾を孕む。</p>
+  <p>観測とは、真実を保つための行為である。<br>
+     MEMORIAはその定義を反転させ、“記録すること＝改竄すること”と再定義している。</p>
+</section>
+
+<section class="logbox">
+  <p>[02:14:39] F.A.D.E. Node-7: MEMORIA出現を確認。</p>
+  <p>[02:14:41] 記録ログ再構成開始。改竄率：27% → 81%。</p>
+  <p>[02:14:45] 観測データ照合不能。再構成後の内容：一致。</p>
+  <p>[02:14:52] [WARNING] 原本記録を復元できません。</p>
+  <p>[02:14:53] [SYSTEM] Observation Halted — Log integrity compromised.</p>
+</section>
+
+<div class="return-link">
+  <a href="./index.html">← Return to Main Observation Terminal</a>
+</div>
+
+<footer>
+  F.A.D.E. / Field Analysis & Deviation Enforcement<br>
+  <small>Observation continuity is containment.</small>
+</footer>
+
+<script>
+window.addEventListener("load", () => {
+  // 一瞬だけノイズ演出＋アラート
+  const alert = document.querySelector(".alert");
+  alert.style.opacity = 1;
+  setTimeout(() => { alert.style.opacity = 0; }, 3000);
+});
+</script>
+
+</body>
+</html>
