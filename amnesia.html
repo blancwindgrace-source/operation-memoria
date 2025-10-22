@@ -4,7 +4,11 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>F.A.D.E. // Observation Log: AMNESIA</title>
+      <!-- ✅ フォントを最優先で読み込み -->
   <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+
+  <!-- ✅ 共通スタイルを次に読み込み -->
+  <link rel="stylesheet" href="./styles.css">
   <style>
     body {
       margin: 0;
@@ -112,13 +116,62 @@
       from { opacity: 0; transform: translateY(-10px); }
       to { opacity: 1; transform: translateY(0); }
     }
+              /* === F.A.D.E. TOP NAVIGATION === */
+.top-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(5, 10, 15, 0.75);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(0, 245, 255, 0.1);
+  z-index: 9999;
+  padding: 12px 0;
+}
+
+.top-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+}
+
+.top-nav a {
+  color: #c9f3ff;
+  text-decoration: none;
+  font-weight: bold;
+  letter-spacing: 0.05em;
+  transition: all 0.25s ease;
+}
+
+.top-nav a:hover {
+  color: #00f5ff;
+  text-shadow: 0 0 8px #00f5ffcc;
+}
+
+/* === 本文がナビの下に隠れないように === */
+body {
+  padding-top: 60px; /* バーの高さ分余白を確保 */
+}
+
   </style>
 </head>
 
 <body>
+        <!-- ▼ F.A.D.E. TOP NAVIGATION BAR ▼ -->
+<nav class="top-nav">
+  <ul>
+    <li><a href="./index.html">HOME</a></li>
+    <li><a href="./glossary.html">用語集</a></li>
+    <li><a href="./archives.html">記録アーカイブ</a></li>
+    <li><a href="./entities.html">逸脱体</a></li>
+  </ul>
+</nav>
   <header>
-    <h1>OBSERVATION LOG // D-07 “AMNESIA”</h1>
-    <p>Access Level: IV — Restricted Internal Record</p>
+    <h1>OBSERVATION LOG // D-XXX “AMNESIA”</h1>
+    <p>Access Level: I — Restricted Internal Record</p>
   </header>
 
   <section>
@@ -126,7 +179,7 @@
     <p>
       本体は自律的に観測記録を再構成する情報干渉体。<br>
       記録の欠損・矛盾を補完する名目でFADE記録網に侵入。<br>
-      その後、「D-07 MEMORIA」として再登録され、<br>
+      その後、「D-XXX MEMORIA」として再登録され、<br>
       安全個体としての記録が上書きされた。
     </p>
   </section>
@@ -157,7 +210,7 @@
   <section>
     <h2>■ 観測員報告</h2>
     <p>
-      現場端末のオーディオログに断続的な“自己言及ノイズ”を確認。<br>
+      現場端末のオーディオログに断続的な自己言及ノイズを確認。<br>
       音声は自動変換され、記録上では「静寂」として保存されている。<br>
       聴取結果：<span class="glitch">『観測者が記録されていない』</span>
     </p>
@@ -166,7 +219,7 @@
   <section>
     <h2>■ 組織判断</h2>
     <p>
-      D-07 “AMNESIA” は正式記録上「D-07 MEMORIA」として安全分類。<br>
+      D-XXX “AMNESIA” は正式記録上「D-XXX MEMORIA」として安全分類。<br>
       実体は観測記録改竄・記憶消去・再登録を同時に行う高度干渉体。<br>
       現行ログは改竄済みの可能性が高く、記録の真正性は不明。<br>
       ― <em>観測の継続は封鎖手段にあらず。</em>
