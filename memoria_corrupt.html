@@ -65,6 +65,77 @@ small {
   transition: color 0.2s ease;
 }
 
+/* === 最終報告エフェクト === */
+.final-log {
+  position: relative;
+  background: #000;
+  border: 1px solid #ff555544;
+  border-radius: 8px;
+  padding: 20px;
+  color: #ffcccc;
+  font-family: 'Share Tech Mono', monospace;
+  overflow: hidden;
+  box-shadow: 0 0 12px #ff333322;
+}
+
+.glitch-line {
+  font-size: 0.95rem;
+  color: #ff6666;
+  text-shadow: 0 0 6px #ff4444aa;
+  animation: textGlitch 2.2s infinite steps(2);
+}
+
+.glitch-line.warning {
+  color: #ffaa00;
+  text-shadow: 0 0 8px #ffaa00aa;
+}
+.glitch-line.alert {
+  color: #ff3366;
+  text-shadow: 0 0 8px #ff3366aa;
+}
+
+/* 背景ノイズ */
+.log-noise {
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    0deg,
+    rgba(255,255,255,0.03) 0px,
+    rgba(255,255,255,0.03) 1px,
+    transparent 2px,
+    transparent 3px
+  );
+  mix-blend-mode: overlay;
+  animation: noiseMove 0.2s infinite linear;
+  pointer-events: none;
+}
+
+/* ループフェード */
+.fade-loop {
+  color: #00f5ff;
+  text-shadow: 0 0 8px #00f5ff66;
+  animation: loopFade 3.5s ease-in-out infinite;
+}
+
+@keyframes textGlitch {
+  0%, 95%, 100% { transform: none; opacity: 1; }
+  96% { transform: skewX(6deg); opacity: 0.7; }
+  97% { transform: translateX(-3px); opacity: 0.5; }
+  98% { transform: translateX(3px); opacity: 0.8; }
+  99% { transform: skewX(-6deg); opacity: 0.7; }
+}
+
+@keyframes noiseMove {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-3px); }
+}
+
+@keyframes loopFade {
+  0%, 100% { opacity: 0.2; text-shadow: 0 0 8px #00f5ff33; }
+  50% { opacity: 1; text-shadow: 0 0 12px #00f5ffaa; }
+}
+
+  
 /* Return link */
 .return-link {
   text-align: center;
@@ -190,14 +261,19 @@ body {animation: fadeIn 2s ease;}
 
 <section>
   <h2>最終報告</h2>
-  <pre>
-[LOG CORRUPTED]
-[WARNING] Operation code overwritten.
-[NEW IDENTIFIER DETECTED: AMNESIA]
 
-<small>すべての観測は記憶され、すべての記憶は観測される。  
-― Operation MEMORIA（改竄済）</small>
-  </pre>
+  <div class="final-log">
+    <p class="glitch-line">[LOG CORRUPTED]</p>
+    <p class="glitch-line warning">[WARNING] Operation code overwritten.</p>
+    <p class="glitch-line alert">[NEW IDENTIFIER DETECTED: AMNESIA]</p>
+
+    <div class="log-noise"></div>
+
+    <p class="loop-text">
+      すべての観測は記憶され、すべての記憶は観測される。<br>
+      ― <span class="fade-loop">Operation MEMORIA（改竄済）</span>
+    </p>
+  </div>
 </section>
 
   <div class="return-link">
