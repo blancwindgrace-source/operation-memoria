@@ -4,11 +4,12 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>F.A.D.E. // Observation Log: AMNESIA</title>
-      <!-- ✅ フォントを最優先で読み込み -->
-  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
 
-  <!-- ✅ 共通スタイルを次に読み込み -->
+  <!-- ✅ フォント -->
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <!-- ✅ 共通スタイル -->
   <link rel="stylesheet" href="./styles.css">
+
   <style>
     body {
       margin: 0;
@@ -18,6 +19,7 @@
       font-family: 'Share Tech Mono', monospace;
       line-height: 1.7;
       overflow-x: hidden;
+      padding-top: 60px;
     }
 
     header {
@@ -72,7 +74,6 @@
       display: block;
     }
 
-    /* エラー・歪み表現 */
     .glitch {
       color: #ff3366;
       text-shadow: 0 0 8px #ff3366aa;
@@ -80,12 +81,8 @@
     }
 
     @keyframes flicker {
-      0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
-        opacity: 1;
-      }
-      20%, 24%, 55% {
-        opacity: 0.3;
-      }
+      0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; }
+      20%, 24%, 55% { opacity: 0.3; }
     }
 
     .return-link {
@@ -116,72 +113,118 @@
       from { opacity: 0; transform: translateY(-10px); }
       to { opacity: 1; transform: translateY(0); }
     }
-              /* === F.A.D.E. TOP NAVIGATION === */
-.top-nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background: rgba(5, 10, 15, 0.75);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(0, 245, 255, 0.1);
-  z-index: 9999;
-  padding: 12px 0;
-}
 
-.top-nav ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  gap: 40px;
-}
+    /* === TOP NAVIGATION === */
+    .top-nav {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      background: rgba(5, 10, 15, 0.75);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(0, 245, 255, 0.1);
+      z-index: 9999;
+      padding: 12px 0;
+    }
+    .top-nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+    }
+    .top-nav a {
+      color: #c9f3ff;
+      text-decoration: none;
+      font-weight: bold;
+      letter-spacing: 0.05em;
+      transition: all 0.25s ease;
+    }
+    .top-nav a:hover {
+      color: #00f5ff;
+      text-shadow: 0 0 8px #00f5ffcc;
+    }
 
-.top-nav a {
-  color: #c9f3ff;
-  text-decoration: none;
-  font-weight: bold;
-  letter-spacing: 0.05em;
-  transition: all 0.25s ease;
-}
+    /* === パス入力UI === */
+    .access-btn {
+      background: none;
+      border: none;
+      color: #ff3366;
+      text-shadow: 0 0 6px #ff336688;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: color 0.3s ease, text-shadow 0.3s ease;
+    }
+    .access-btn:hover {
+      color: #ffffff;
+      text-shadow: 0 0 8px #ff7777cc;
+    }
 
-.top-nav a:hover {
-  color: #00f5ff;
-  text-shadow: 0 0 8px #00f5ffcc;
-}
-
-/* === 本文がナビの下に隠れないように === */
-body {
-  padding-top: 60px; /* バーの高さ分余白を確保 */
-}
-
+    .pass-window {
+      margin: 20px auto;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid #00f5ff33;
+      border-radius: 6px;
+      padding: 16px;
+      text-align: center;
+      width: 260px;
+      color: #fff;
+    }
+    .pass-window.hidden {
+      display: none;
+    }
+    .pass-input-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 6px;
+    }
+    .pass-input-wrapper input {
+      background: #000;
+      color: #00f5ff;
+      border: 1px solid #00f5ff66;
+      padding: 6px;
+      width: 160px;
+      text-align: center;
+    }
+    .pass-window button {
+      background: transparent;
+      border: 1px solid #00f5ff66;
+      color: #00f5ff;
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+    .pass-msg {
+      margin-top: 8px;
+      font-size: 0.85rem;
+    }
   </style>
 </head>
 
 <body>
-        <!-- ▼ F.A.D.E. TOP NAVIGATION BAR ▼ -->
-<nav class="top-nav">
-  <ul>
-    <li><a href="./index.html">HOME</a></li>
-    <li><a href="./glossary.html">用語集</a></li>
-    <li><a href="./archives.html">記録アーカイブ</a></li>
-    <li><a href="./entities.html">逸脱体</a></li>
-  </ul>
-</nav>
+  <!-- ▼ F.A.D.E. TOP NAVIGATION BAR ▼ -->
+  <nav class="top-nav">
+    <ul>
+      <li><a href="./index.html">HOME</a></li>
+      <li><a href="./glossary.html">用語集</a></li>
+      <li><a href="./archives.html">記録アーカイブ</a></li>
+      <li><a href="./entities.html">逸脱体</a></li>
+    </ul>
+  </nav>
+
   <header>
     <h1>OBSERVATION LOG // D-XXX “AMNESIA”</h1>
     <p>Access Level: <span class="glitch">I</span> — Restricted Internal Record</p>
   </header>
 
-<section>
-  <h2>Deviation Entity: MEMORIA(AMNESIA)</h2>
-  <p><strong>分類名:</strong> 認識改竄体</p>
-  <p><strong>危険度ランク:</strong> <span class="glitch">D</span></p>
-  <p><strong>初観測記録地点:</strong> F.A.D.E. Central Archive Layer</p>
-  <p><strong>備考:</strong> 観測記録の自動再構成。事実改竄の兆候。</p>
-</section>
-  
+  <section>
+    <h2>Deviation Entity: MEMORIA(AMNESIA)</h2>
+    <p><strong>分類名:</strong> 認識改竄体</p>
+    <p><strong>危険度ランク:</strong> <span class="glitch">D</span></p>
+    <p><strong>初観測記録地点:</strong> F.A.D.E. Central Archive Layer</p>
+    <p><strong>備考:</strong> 観測記録の自動再構成。事実改竄の兆候。</p>
+  </section>
+
   <section>
     <h2>■ 概要</h2>
     <p>
@@ -211,7 +254,18 @@ body {
       <span class="jp">[00:13:19] すべての異常は解消されました。</span><br><br>
 
       [00:13:21] <span class="glitch">...</span><br>
-      <span class="jp glitch">（以下の記録は存在しません）</span>
+      <button id="accessTrigger" class="access-btn jp glitch">（以下の記録は存在しません）</button>
+    </div>
+
+    <!-- 🔽 パスワード入力UI -->
+    <div id="passPrompt" class="pass-window hidden">
+      <p>ACCESS AUTHORIZATION REQUIRED</p>
+      <div class="pass-input-wrapper">
+        <input type="password" id="passInput" placeholder="ENTER ACCESS CODE">
+        <button id="togglePass" aria-label="Show password">👁</button>
+      </div>
+      <button id="passSubmit">VERIFY</button>
+      <p id="passMsg" class="pass-msg"></p>
     </div>
   </section>
 
@@ -242,5 +296,48 @@ body {
     F.A.D.E. / Field Analysis & Deviation Enforcement<br>
     <small>Observation Record — Internal Use Only</small>
   </footer>
+
+  <script>
+  // === パス入力制御 ===
+  const accessBtn = document.getElementById("accessTrigger");
+  const passPrompt = document.getElementById("passPrompt");
+  const passInput = document.getElementById("passInput");
+  const passSubmit = document.getElementById("passSubmit");
+  const passMsg = document.getElementById("passMsg");
+  const togglePass = document.getElementById("togglePass");
+
+  if (accessBtn) {
+    accessBtn.addEventListener("click", () => {
+      passPrompt.classList.toggle("hidden");
+      passMsg.textContent = "";
+      passInput.value = "";
+    });
+  }
+
+  if (togglePass && passInput) {
+    togglePass.addEventListener("click", () => {
+      const type = passInput.getAttribute("type") === "password" ? "text" : "password";
+      passInput.setAttribute("type", type);
+      togglePass.textContent = type === "password" ? "👁" : "🙈";
+    });
+  }
+
+  if (passSubmit) {
+    passSubmit.addEventListener("click", e => {
+      e.preventDefault();
+      const entered = passInput.value.trim().toUpperCase();
+      const correctCode = "OPERATION-MEMORIA"; // ✅ 任意のコードに変更可
+
+      if (entered === correctCode) {
+        passMsg.innerHTML = '<span style="color:#00ff99;">ACCESS GRANTED</span>';
+        setTimeout(() => {
+          window.location.href = "memoria_corrupt.html";
+        }, 1500);
+      } else {
+        passMsg.innerHTML = '<span style="color:#ff4444;">ACCESS DENIED</span>';
+      }
+    });
+  }
+  </script>
 </body>
 </html>
