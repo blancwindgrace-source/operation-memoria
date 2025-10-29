@@ -174,6 +174,30 @@ code, pre {
   to {opacity: 1;}
 }
 body {animation: fadeIn 2s ease;}
+
+/* === 観測ループ仮説 (心理班報告書) === */
+.report {
+  margin-top: 60px;
+  background: #0b1115;
+  border: 1px solid #00f5ff22;
+  border-radius: 8px;
+  box-shadow: 0 0 12px #00f5ff22;
+  padding: 20px;
+}
+.report h2 {
+  color: #00f5ff;
+  border-bottom: 1px solid #00f5ff33;
+  text-shadow: 0 0 8px #00f5ff88;
+}
+.report h3 {
+  color: #7deaff;
+  margin-top: 1.2em;
+  text-shadow: 0 0 6px #00f5ff44;
+}
+.report .alert { color: #ff3366; text-shadow: 0 0 8px #ff3366aa; }
+.report .info { color: #00f5ff; text-shadow: 0 0 6px #00f5ffaa; }
+.report .warn { color: #ffaa00; text-shadow: 0 0 6px #ffaa0088; }
+.report pre { background: #05080a; padding: 10px; border-radius: 4px; }
 </style>
 </head>
 
@@ -224,7 +248,7 @@ body {animation: fadeIn 2s ease;}
     <span class="glitch">MEMORIA</span>に関する記憶のみが再構築される。  
   </p>
   <p>
-    FADE上層部はこれを「自己増殖型観測構造（Self-Reflective Observation Loop）」と呼称。  
+    FADE上層部はこれを「自己増殖型観測構造」と呼称。  
     <strong>観測しようとする行為そのものが、作戦を再生成する</strong>という矛盾を生成していた。
   </p>
 </section>
@@ -276,10 +300,54 @@ body {animation: fadeIn 2s ease;}
   </div>
 </section>
 
-  <div class="return-link">
+<!-- ▼ ここから心理班報告書セクション ▼ -->
+<section class="report">
+  <h2>観測ループ仮説（FADE心理班正式報告書）</h2>
+  <h3>■ 概要</h3>
+  <p>
+    現行作戦「<span class="info">Operation MEMORIA</span>」に関与した全観測員が、  
+    同一任務および同一逸脱体との遭遇を複数回繰り返していることが確認された。  
+    各観測記録には一貫して「<span class="info">初回観測</span>」と記載されている。
+  </p>
+  <h3>■ 記憶構造への影響</h3>
+  <ul>
+    <li>影響範囲：逸脱体および任務に関する記憶のみ。</li>
+    <li>仲間・施設・職務記録には影響なし。</li>
+    <li>記憶損失の自覚はなく、心理的ストレスも観測されない。</li>
+  </ul>
+  <h3>■ 心理班分析</h3>
+  <p>
+    当該現象は、<span class="alert">情報干渉体 “MEMORIA(AMNESIA)”</span>の  
+    認識改竄による結果と推定。観測完了時に自動発動し、  
+    “観測は行われたが対象は存在しなかった”という構造的矛盾を生成している。
+  </p>
+  <p class="warn">
+    ― 観測こそが封鎖手段であると信じた瞬間、封鎖は成立しなくなる。
+  </p>
+  <h3>■ 内部診断ログ</h3>
+  <pre class="info">
+[SYS] Running ECHO-VII Cognitive Loop Scan...
+[RESULT] LOOP CONFIRMED (Recurrence Ratio: 98.7%)
+[ANOMALY] Recursive Mission Data Detected.
+[WARNING] Source of Directive: UNKNOWN_
+  </pre>
+  <h3>■ 結論</h3>
+  <p>
+    F.A.D.E.は「観測ループ」に囚われている。  
+    観測員は仲間を覚えているが、逸脱体を忘れる。  
+    ― それでも観測を続けなければならない。
+  </p>
+  <blockquote class="alert">
+    「忘却は赦しであり、観測は赦されぬ行為である。」<br>
+    ― F.A.D.E.心理班・再帰理論セクション 終端報告書抜粋
+  </blockquote>
+</section>
+<!-- ▲ 観測ループ仮説ここまで ▲ -->
+
+<div class="return-link">
   <a href="./index.html">← Return to Central Terminal</a>
 </div>
-  
+
 <footer>
   <p>F.A.D.E. / Field Analysis & Deviation Enforcement</p>
   <small>OPERATION MEMORIA // CORRUPTED ARCHIVE NODE</small>
@@ -289,16 +357,14 @@ body {animation: fadeIn 2s ease;}
 // === MEMORIA → AMNESIA グリッチ演出 ===
 function glitchText(el) {
   const original = el.textContent;
-  if (Math.random() < 0.2) { // 20%確率で一瞬変化
+  if (Math.random() < 0.2) {
     el.textContent = 'AMNESIA';
     setTimeout(() => { el.textContent = original; }, 200 + Math.random() * 400);
   }
 }
-
 setInterval(() => {
   document.querySelectorAll('.glitch').forEach(glitchText);
 }, 800);
 </script>
-
 </body>
 </html>
